@@ -1,6 +1,6 @@
 baseURL: http://example.org/
 languageCode: en-us
-title: Forty
+title: Sam Nanda's Website
 theme: forty
 googleAnalytics: ''
 disqusShortname: ''
@@ -13,15 +13,15 @@ params:
     title: Hi, my name is Forty
   blog: {}
   contact:
-    address:
-      - city: City, ST 00000
-        country: Country
-        street: Street
+    address: London Buisness School 
+      - city: London
+        country: United Kingdom
+        street: Regent's Park
         title: Address
     buttonClear: Clear
     buttonSend: Send message
     email:
-      - email: example@domain.com
+      - email: snanda.mfa2022@london.edu
         title: Email
     enable: yes
     phone:
@@ -44,19 +44,19 @@ params:
     social:
       - icon: fa-twitter
         label: Twitter
-        url: https://www.twitter.com
+        url: https://www.twitter.com/samnanda1
       - icon: fa-facebook
         label: Facebook
-        url: https://www.facebook.com
+        url: https://www.facebook.com/samnanda1
       - icon: fa-instagram
         label: Instagram
-        url: https://www.instagram.com
+        url: https://www.instagram.com/samnanda1
       - icon: fa-github
         label: GitHub
-        url: https://www.github.com
+        url: https://www.github.com/samnanda1
       - icon: fa-linkedin
         label: LinkedIn
-        url: https://www.linkedin.com
+        url: https://www.linkedin.com/samnanda1
   image: ''
   name: Your name
   navigation:
