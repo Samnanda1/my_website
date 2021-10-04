@@ -10,13 +10,13 @@ params:
     subtitle: |-
       A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP
       AND RELEASED UNDER THE CREATIVE COMMONS.
-    title: Hi, my name is Forty
+    title: Hi, my name is Sam
   blog: {}
   contact:
-    address: London Buisness School 
-      - city: London
+    address:  
+      - city: London NW1 4SA
         country: United Kingdom
-        street: Regent's Park
+        street: London Business School, Regent's Park
         title: Address
     buttonClear: Clear
     buttonSend: Send message
