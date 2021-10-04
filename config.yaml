@@ -1,0 +1,118 @@
+baseURL: http://example.org/
+languageCode: en-us
+title: Forty
+theme: forty
+googleAnalytics: ''
+disqusShortname: ''
+params:
+  banner:
+    buttonText: Get Started
+    subtitle: |-
+      A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP
+      AND RELEASED UNDER THE CREATIVE COMMONS.
+    title: Hi, my name is Forty
+  blog: {}
+  contact:
+    address:
+      - city: City, ST 00000
+        country: Country
+        street: Street
+        title: Address
+    buttonClear: Clear
+    buttonSend: Send message
+    email:
+      - email: example@domain.com
+        title: Email
+    enable: yes
+    phone:
+      - phone: (000) 000-0000 x1234
+        title: Phone
+  custom_css: []
+  custom_js: []
+  description: Your description
+  error404:
+    heading: Page couldn't be found
+    text: Please visit [this page](/)
+  favicon: favicon.ico
+  footer:
+    copyright: Company Name
+    enable: yes
+    quicklinks:
+      - alt: HTML5 UP
+        text: 'Design: '
+        url: https://www.html5up.net
+    social:
+      - icon: fa-twitter
+        label: Twitter
+        url: https://www.twitter.com
+      - icon: fa-facebook
+        label: Facebook
+        url: https://www.facebook.com
+      - icon: fa-instagram
+        label: Instagram
+        url: https://www.instagram.com
+      - icon: fa-github
+        label: GitHub
+        url: https://www.github.com
+      - icon: fa-linkedin
+        label: LinkedIn
+        url: https://www.linkedin.com
+  image: ''
+  name: Your name
+  navigation:
+    button1:
+      - name: Get Started
+        url: blogs
+    button2:
+      - name: Log In
+        url: '#'
+    links:
+      - name: Home
+        url: '#'
+      - name: Blogs
+        url: blogs
+      - name: Generic Blog
+        url: blogs/ipsum
+      - name: Elements
+        url: elements.html
+    menu: Menu
+    subtitle: By HTML5 Up
+    title: Forty
+  tiles:
+    enable: yes
+    showcase:
+      - image: pic01.jpg
+        subtitle: Ipsum Dolor Sit Amet
+        title: Aliquam
+        url: blogs/aliquam
+      - image: pic02.jpg
+        subtitle: Feugiat Amet Tempus
+        title: Tempus
+        url: blogs/tempus
+      - image: pic03.jpg
+        subtitle: Lorem Etiam Nullam
+        title: Magna
+        url: blogs/magna
+      - image: pic04.jpg
+        subtitle: Nisl Sed Aliquam
+        title: Ipsum
+        url: blogs/ipsum
+      - image: pic05.jpg
+        subtitle: Ipsum Dolor Sit Amet
+        title: Consequat
+        url: blogs/ipsum
+      - image: pic06.jpg
+        subtitle: Feugiat Amet Tempus
+        title: Etiam
+        url: blogs/ipsum
+  two:
+    buttonText: Get Started
+    enable: yes
+    subtitle: "Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero.
+      \n    Mauris aliquet magna magna sed nunc rhoncus pharetra. \n    Pellentesque
+      condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia
+      pellentesque lorem ipsum dolor. \n    Nullam et orci eu lorem consequat tincidunt.
+      Vivamus et sagittis libero.\n    Mauris aliquet magna magna sed nunc rhoncus
+      amet pharetra et feugiat tempus."
+    title: Massa libero
+    url: blogs
