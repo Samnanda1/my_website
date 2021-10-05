@@ -10,7 +10,7 @@ params:
     subtitle: |-
       A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP
       AND RELEASED UNDER THE CREATIVE COMMONS.
-    title: Hi, my name is Forty
+    title: Hi, my name is Sam Nanda, I am currently studying for a Masters in Financial Analysis at LBS
   blog: {}
   contact:
     address: London Buisness School 
@@ -25,7 +25,7 @@ params:
         title: Email
     enable: yes
     phone:
-      - phone: (000) 000-0000 x1234
+      - phone: (+44) 7468457775
         title: Phone
   custom_css: []
   custom_js: []
@@ -35,12 +35,12 @@ params:
     text: Please visit [this page](/)
   favicon: favicon.ico
   footer:
-    copyright: Company Name
-    enable: yes
-    quicklinks:
-      - alt: HTML5 UP
-        text: 'Design: '
-        url: https://www.html5up.net
+    # copyright: Company Name
+   # enable: yes
+    #quicklinks:
+      #  text: 'Design: '
+     # - alt: HTML5 UP
+       # url: https://www.html5up.net
     social:
       - icon: fa-twitter
         label: Twitter
@@ -81,10 +81,10 @@ params:
   tiles:
     enable: yes
     showcase:
-      - image: pic01.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Aliquam
-        url: blogs/aliquam
+      - image: projects/sleone.jpg
+        subtitle: Charity Mission
+        title: Sierra Leone
+        url: projects/sleone
       - image: pic02.jpg
         subtitle: Feugiat Amet Tempus
         title: Tempus
