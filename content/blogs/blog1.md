@@ -7,7 +7,7 @@ description: "Click here for more information about my recent coding projects re
 draft: false
 image: coding.JPEG
 keywords: ""
-slug: ipsum
+slug: Coding
 title: Coding
 ---
 
