@@ -3,10 +3,10 @@ categories:
 - ""
 - ""
 date: "2017-10-31T22:26:09-05:00"
-description: Lorem Etiam Nullam
+description: "Click here for more information about myself"
 draft: false
-image: pic09.jpg
+image: me.jpg
 keywords: ""
-slug: magna
-title: Magna
+slug: About Me
+title: Aboput Me
 ---
