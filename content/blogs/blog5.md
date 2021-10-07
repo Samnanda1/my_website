@@ -24,7 +24,7 @@ Feel free to click on the rest of the tiles to take a look at:
     -My Education
     -My Internships
     -Coding Projects
-    -Charity Missions
+    -[Charity Missions](blogs/sleone)
     -Sport
 
 Please take a look at my LinkedIn here: [Sam](https://www.linkedin.com/samnanda1)
