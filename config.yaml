@@ -9,8 +9,8 @@ params:
     buttonText: Get Started
     subtitle: |-
       Please explore my website, and if you have any further questions, don't hesitate to get in contact with me.
-    title: Hi, my name is Sam Nanda
-  blog: {}
+    title: HI, I'M SAM AND WELCOME TO MY WEBSITE
+    blog: {}
   contact:
     address:  
       - city: London NW1 4SA
@@ -75,43 +75,43 @@ params:
       - name: Elements
         url: elements.html
     menu: Menu
-    subtitle: By HTML5 Up
-    title: Forty
+   # subtitle: By HTML5 Up
+   # title: Forty
   tiles:
     enable: yes
     showcase:
+      - image: projects/me.jpg
+        #subtitle: Charity Mission
+        title: About Me
+        url: projects/me
+      - image: projects/cv.jpeg
+       # subtitle: Feugiat Amet Tempus
+        title: Explore My CV
+        url: projects/cv
       - image: projects/sleone.jpg
-        subtitle: Charity Mission
-        title: Sierra Leone
+       # subtitle: Lorem Etiam Nullam
+        title: Charity Work
         url: projects/sleone
-      - image: pic02.jpg
-        subtitle: Feugiat Amet Tempus
-        title: Tempus
-        url: blogs/tempus
-      - image: pic03.jpg
-        subtitle: Lorem Etiam Nullam
-        title: Magna
-        url: blogs/magna
-      - image: pic04.jpg
-        subtitle: Nisl Sed Aliquam
-        title: Ipsum
+      - image: projects/sport.JPG
+       # subtitle: Nisl Sed Aliquam
+        title: Sport
+        url: projects/sport
+      - image: projects/lbs.jpg
+       # subtitle: Ipsum Dolor Sit Amet
+        title: Academia
+        url: projects/lbs
+      - image: projects/coding.JPEG
+       # subtitle: Feugiat Amet Tempus
+        title: Coding
         url: blogs/ipsum
-      - image: pic05.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Consequat
-        url: blogs/ipsum
-      - image: pic06.jpg
-        subtitle: Feugiat Amet Tempus
-        title: Etiam
-        url: blogs/ipsum
-  two:
-    buttonText: Get Started
-    enable: yes
-    subtitle: "Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero.
-      \n    Mauris aliquet magna magna sed nunc rhoncus pharetra. \n    Pellentesque
-      condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia
-      pellentesque lorem ipsum dolor. \n    Nullam et orci eu lorem consequat tincidunt.
-      Vivamus et sagittis libero.\n    Mauris aliquet magna magna sed nunc rhoncus
-      amet pharetra et feugiat tempus."
-    title: Massa libero
-    url: blogs
+ # two:
+  #  buttonText: Get Started
+   # enable: yes
+    #subtitle: "Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero.
+    #  \n    Mauris aliquet magna magna sed nunc rhoncus pharetra. \n    Pellentesque
+     # condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia
+      #pellentesque lorem ipsum dolor. \n    Nullam et orci eu lorem consequat tincidunt.
+  #    Vivamus et sagittis libero.\n    Mauris aliquet magna magna sed nunc rhoncus
+   #   amet pharetra et feugiat tempus."
+    #title: Massa libero
+    #url: blogs
