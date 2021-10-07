@@ -96,10 +96,10 @@ params:
        # subtitle: Nisl Sed Aliquam
         title: Sport
         url: blogs/sport
-      - image: projects/lbs.jpg
+     # - image: projects/lbs.jpg
        # subtitle: Ipsum Dolor Sit Amet
-        title: Academia
-        url: blogs/lbs
+     #   title: Academia
+     #   url: blogs/lbs
       - image: projects/coding.JPEG
        # subtitle: Feugiat Amet Tempus
         title: Coding
