@@ -13,11 +13,9 @@ params:
     blog: {}
   contact:
     address:  
-      - city: London 
-      NW1 4SA
+      - city: London NW1 4SA
         country: United Kingdom
-        street: London Business School 
-        Regent's Park
+        street: London Business School, Regent's Park
         title: Address
     buttonClear: Clear
     buttonSend: Send message
