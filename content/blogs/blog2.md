@@ -8,7 +8,7 @@ draft: false
 image: lbs.jpg
 keywords: ""
 slug: lbs
-title: Academia
+title: Education
 ---
 
 ## **Welcome to the fifth tile of my website;**

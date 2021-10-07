@@ -84,10 +84,18 @@ params:
         #subtitle: Charity Mission
         title: About Me
         url: blogs/me
+      - image: projects/lbs.jpg
+       # subtitle: Ipsum Dolor Sit Amet
+        title: Education
+        url: blogs/lbs
       - image: projects/cv.jpeg
        # subtitle: Feugiat Amet Tempus
-        title: Explore My CV
+        title: Internships
         url: blogs/cv
+      - image: projects/coding.JPEG
+       # subtitle: Feugiat Amet Tempus
+        title: Coding
+        url: blogs/coding
       - image: projects/sleone.jpg
        # subtitle: Lorem Etiam Nullam
         title: Charity Work
@@ -96,14 +104,8 @@ params:
        # subtitle: Nisl Sed Aliquam
         title: Sport
         url: blogs/sport
-     # - image: projects/lbs.jpg
-       # subtitle: Ipsum Dolor Sit Amet
-     #   title: Academia
-     #   url: blogs/lbs
-      - image: projects/coding.JPEG
-       # subtitle: Feugiat Amet Tempus
-        title: Coding
-        url: blogs/coding
+      
+    
  # two:
   #  buttonText: Get Started
    # enable: yes

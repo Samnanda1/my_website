@@ -8,7 +8,7 @@ draft: false
 image: cv.jpeg
 keywords: ""
 slug: cv
-title: CV
+title: Internship's
 ---
 
 ## **Welcome to the second tile of my website;**
