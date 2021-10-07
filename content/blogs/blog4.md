@@ -3,11 +3,13 @@ categories:
 - ""
 - ""
 date: "2017-10-31T22:42:51-05:00"
-description: "Click here for more information about the sports i play"
+description: "Click here for more information about the charity work i have done/do"
 draft: false
-image: sport.JPG
+image: sleone.jpg
 keywords: ""
-slug: Sports
-title: Sports
+slug: Charity Work
+title: Charity Work
 ---
+
+
 

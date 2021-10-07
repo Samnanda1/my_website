@@ -2,11 +2,13 @@
 categories:
 - ""
 - ""
-date: "2017-10-31T22:42:51-05:00"
-description: "Click here for more information about the charity work i have done/do"
+date: "2017-10-31T22:26:13-05:00"
+description: "Click here for a deep dive into my CV"
 draft: false
-image: sleone.jpg
+image: cv.jpeg
 keywords: ""
-slug: Charity Work
-title: Charity Work
+slug: Explore my CV
+title: CV
 ---
+
+

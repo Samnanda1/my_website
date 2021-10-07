@@ -2,11 +2,11 @@
 categories:
 - ""
 - ""
-date: "2017-10-31T22:26:09-05:00"
-description: "Click here for more information about myself"
+date: "2017-10-31T22:42:51-05:00"
+description: "Click here for more information about my academic background"
 draft: false
-image: me.jpg
+image: lbs.jpg
 keywords: ""
-slug: About Me
-title: Aboput Me
+slug: Academia
+title: Academia
 ---

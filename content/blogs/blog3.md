@@ -2,11 +2,11 @@
 categories:
 - ""
 - ""
-date: "2017-10-31T22:26:13-05:00"
-description: "Click here for a deep dive into my CV"
+date: "2017-10-31T22:42:51-05:00"
+description: "Click here for more information about the sports I play"
 draft: false
-image: cv.jpeg
+image: sport.JPG
 keywords: ""
-slug: Exlpore my CV
-title: CV
+slug: Sports
+title: Sports
 ---
