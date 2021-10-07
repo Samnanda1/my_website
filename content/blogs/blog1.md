@@ -11,4 +11,4 @@ slug: Coding
 title: Coding
 ---
 
-TYPE HERE MORE INFO
+## Welcome to the sixth tile of my website;
