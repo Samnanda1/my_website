@@ -7,7 +7,7 @@ description: "Click here for a deep dive into my CV"
 draft: false
 image: cv.jpeg
 keywords: ""
-slug: Explore my CV
+slug: cv
 title: CV
 ---
 

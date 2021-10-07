@@ -7,7 +7,7 @@ description: "Click here for more information about the charity work i have done
 draft: false
 image: sleone.jpg
 keywords: ""
-slug: Charity Work
+slug: sleone
 title: Charity Work
 ---
 

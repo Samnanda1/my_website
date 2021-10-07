@@ -7,6 +7,6 @@ description: "Click here for more information about my academic background"
 draft: false
 image: lbs.jpg
 keywords: ""
-slug: Academia
+slug: lbs
 title: Academia
 ---

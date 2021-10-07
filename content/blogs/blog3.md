@@ -7,6 +7,6 @@ description: "Click here for more information about the sports I play"
 draft: false
 image: sport.JPG
 keywords: ""
-slug: Sports
+slug: sport
 title: Sports
 ---
