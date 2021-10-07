@@ -83,27 +83,27 @@ params:
       - image: projects/me.jpg
         #subtitle: Charity Mission
         title: About Me
-        url: projects/me
+        url: blogs/me
       - image: projects/cv.jpeg
        # subtitle: Feugiat Amet Tempus
         title: Explore My CV
-        url: projects/cv
+        url: blogs/cv
       - image: projects/sleone.jpg
        # subtitle: Lorem Etiam Nullam
         title: Charity Work
-        url: projects/sleone
+        url: blogs/sleone
       - image: projects/sport.JPG
        # subtitle: Nisl Sed Aliquam
         title: Sport
-        url: projects/sport
+        url: blogs/sport
       - image: projects/lbs.jpg
        # subtitle: Ipsum Dolor Sit Amet
         title: Academia
-        url: projects/lbs
+        url: blogs/lbs
       - image: projects/coding.JPEG
        # subtitle: Feugiat Amet Tempus
         title: Coding
-        url: blogs/ipsum
+        url: blogs/coding
  # two:
   #  buttonText: Get Started
    # enable: yes
