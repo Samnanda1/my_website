@@ -21,10 +21,10 @@ I am currently studying at London Business School after graduating from Newcastl
 
 Feel free to click on the rest of the tiles to take a look at:
 
-    -My Education
-    -My Internships
-    -Coding Projects
-    -[Charity Missions](blogs/sleone)
-    -Sport
+    -[My Education](https://samnanda1.netlify.app/blogs/lbs/)
+    -[My Internships](https://samnanda1.netlify.app/blogs/cv/)
+    -[Coding Projects](https://samnanda1.netlify.app/blogs/coding/)
+    -[Charity Missions](blogs/https://samnanda1.netlify.app/blogs/sleone/)
+    -[Sport](https://samnanda1.netlify.app/blogs/sport/)
 
 Please take a look at my LinkedIn here: [Sam](https://www.linkedin.com/samnanda1)
