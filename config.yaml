@@ -24,7 +24,7 @@ params:
         title: Email
     enable: yes
     phone:
-      - phone: (+44) 7468457775
+      - phone: (+44) 7468 457775
         title: Phone
   custom_css: []
   custom_js: []
