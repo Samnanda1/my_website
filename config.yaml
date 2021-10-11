@@ -95,7 +95,7 @@ params:
       - image: projects/coding.JPEG
        # subtitle: Feugiat Amet Tempus
         title: Coding
-        url: blogs/coding
+        url: blogs/blog1
       - image: projects/sleone.jpg
        # subtitle: Lorem Etiam Nullam
         title: Charity Work
