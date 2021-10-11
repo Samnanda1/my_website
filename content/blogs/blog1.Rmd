@@ -14,6 +14,8 @@ title: Coding
 
 ```{r}
 load("tennis.RData")
+library(ggplot2)
+library(GGally)
 tennis
 View(tennis)
 set.seed(8009488)
@@ -139,7 +141,7 @@ When λ = 0.001 none of the coefficients equal zero and we get a solution very c
 When λ= 0.1047616 the coefficients are either zero or been shrunk toward zero to the least square’s solution.
 
 ```{r}
-install.packages("leaps")
+
 
 library(leaps)
 
@@ -195,24 +197,7 @@ predict.regsubsets  =function(object, newdata, id, ...){
   return(mat[,xvars]%*% coefi)
 }
 
-cvbsserrors = matrix(NA, p, nfolds)
 
-for (k in 1:nfolds) {
-  bsstmpfits = regsubsets(WinPct ~ ., data=tennisdata[foldindex!=k,], method = "exhaustive",nvmax=p)
-  for (m in 1:p) {
-  bsstmppredict = predict(bsstmpfits,tennisdata[foldindex==k,], m)
-  cvbsserrors[m,k] = mean((tennisdata[foldindex==k,]$WinPct - bsstmppredict)^2)
-  }
-}
-
-cvbsserrors ## code doesn't work again 
-
-bss_mse=numeric(p)
-
-for(m in 1:p){
-  bss_mse[m]=weighted.mean(cv_bss_errors[m,],w=foldsize)
-  }
-bss_mse ##code doesn't work
 
 (best_cv=which.min(bss_mse))
 
@@ -262,4 +247,4 @@ The main problem with best subset selection is that the number of models to be c
 ***Improvement***
 Given there were 50 more entries in the entire data set, it would be useful to re do the analysis but with multiple different subsets of data, to see if the same results are obtained. This would further the validity of the model choice. To improve the results further, more model selection tests could be done, for example Ridge Regression and PCR. 
 
-
+blogdown::serve_site() 
