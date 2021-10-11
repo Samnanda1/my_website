@@ -17,4 +17,18 @@ I have been fortunate enough to combine my love of travel and love of helping pe
 
 In 2016 I volunteered with the Leadership at Sea Charity, for one leg of the Tall Ship race. I sailed on board Tenacious, the largest wooden tall ship of her kind in the world, it is designed and built to be fully accessible for people with disabilities. I joined as part of the permanent crew for the week to help with the sailing of the ship and giving those less fortunate the opportunity to sail from Lisbon to Cadiz. 
 
-It was an incredible opportunity to meet such inspirational people, who had terminal illnesses but had the courage and determination to undergo a challenging task for anyone let alone someone in a wheelchair. I had the pleasure of hoisting a friend in a wheelchair up 27 meters to the top of the mast. Giving him the oppurtunity to do this was inspirational for me and the experience taught me the value of communication, teamwork, leadership and the importance of never prejudging people.
+It was an incredible opportunity to meet such inspirational people, who had terminal illnesses but had the courage and determination to undergo a challenging task for anyone let alone someone in a wheelchair. I had the pleasure of hoisting a friend in a wheelchair up 27 meters to the top of the mast. Giving him the opportunity to do this was inspirational for me and the experience taught me the value of communication, teamwork, leadership and the importance of never prejudging people.
+
+Following this in 2018, as Headboy I organised a charity mission to our sister school in Sierra Leone. I gathered a team of 8 and collectively we raised £20,000 through sponsored events such as the 3 peaks challenge and organising auctions. 
+
+The main use of the money was to build a bore-hole, so that the school didn't have to spend money on buying bottle watered and could use the money for resources. However our sister school, St Ambrose College, was heavily impacted by the Ebola Crisis, with around 40% of pupils becoming orphaned from the virus, and so excess funds went to those children to support them in their new homes. 
+
+In February, the team and I, flew out to Sierra Leone, to help build the bore-hole and teach lessons to the children of the school. 
+
+Again this was a humbling experience on many levels, the ability to interact with the children and form connections despite the obvious language barrier was a surprise to me. Not only this but how generous, warm and kind the children were, given they had there lives torn about by the virus. 
+
+Finally, my family and I are great supporters of the 'We Mind the Gap' Charity. It is a northern charity, that individually supports young girls who typically have left education and are without a job. Each 'Gappie' with the support of the charity and local businesses, is provided with a 12 month program, which includes paid work, a personal one to one mentor, coaching sessions and activities with other Gappie's. People entering the program usually have no ambition to get a job, however 70% of those doing the course, gain employment of the back of it. 
+
+For younger girls, with parents who can't support them or who are in the welfare system, the personal mentor of the child, will pick them up in the morning, ensuring that they go to school and have breakfast. It provides them with the support and structure they do not currently have, allowing them to better use their education. 
+
+The charity is close to us as we can see the real benefit and positive outcome for each individual. Therefore we sponsor Gappie's for work placements, and raise money for the charity. For more info please visit the website [here](https://wemindthegap.org.uk)
