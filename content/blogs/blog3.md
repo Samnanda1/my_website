@@ -23,4 +23,4 @@ My other sporting loves are skiing and any water activity, whether that be surfi
 
 I've been fortunate enough to had the opportunity to go skiing from a young age, and it has bought along with it some of the best experiences ever, from dad's and lad's holidays to having 1500 uni students in the Folie Douche.
 
-![](my_website/static/img/blogs/IMG_0504.jpeg)
+![](static/img/blogs/IMG_0504.jpeg)
