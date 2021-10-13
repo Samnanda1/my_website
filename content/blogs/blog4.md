@@ -31,4 +31,5 @@ Finally, my family and I are great supporters of the 'We Mind the Gap' Charity. 
 
 For younger girls, with parents who can't support them or who are in the welfare system, the personal mentor of the child, will pick them up in the morning, ensuring that they go to school and have breakfast. It provides them with the support and structure they do not currently have, allowing them to better use their education. 
 
-The charity is close to us as we can see the real benefit and positive outcome for each individual. Therefore we sponsor Gappie's for work placements, and raise money for the charity. For more info please visit the website [here](https://wemindthegap.org.uk)
+The charity is close to us as we can see the real benefit and positive outcome for each individual. Therefore we sponsor Gappie's for work placements, and raise money for the charity. For more info please visit the website
+[here](https://wemindthegap.org.uk)
