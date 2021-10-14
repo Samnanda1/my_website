@@ -7,7 +7,7 @@ description: "Click here to see my project on Inverted Yeild Curves"
 draft: false
 #image: coding.jpg
 keywords: ""
-slug: blog1
+slug: yield
 title: Coding
 ---
 
