@@ -13,98 +13,111 @@ title: Project on Airbnb's in Montreal
 
 
 
-<h1>
-Project
-<h1>
-<p>####Initially glimpsing the data, there are 12540 observations of 74 variables, however not all of these will have an effect on price, such as the host_Url. Therefore we manually removed such varibales, along with filtering by minimum no of nights less than 4 and accomodates 2 or more people. We called this data set newlistings 2.</p>
-<pre><code>Rows: 7,400
-Columns: 30
-$ host_response_rate          &lt;chr&gt; &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;N…
-$ host_acceptance_rate        &lt;chr&gt; &quot;100%&quot;, &quot;100%&quot;, &quot;94%&quot;, &quot;94%&quot;, &quot;0%&quot;, &quot;N/A&quot;,…
-$ host_is_superhost           &lt;lgl&gt; FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, T…
-$ host_listings_count         &lt;dbl&gt; 1, 6, 2, 2, 1, 2, 1, 1, 1, 0, 7, 7, 1, 0, …
-$ host_verifications          &lt;chr&gt; &quot;[&#39;email&#39;, &#39;phone&#39;, &#39;reviews&#39;, &#39;manual_off…
-$ host_has_profile_pic        &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
-$ host_identity_verified      &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
-$ accommodates                &lt;dbl&gt; 2, 2, 4, 5, 5, 7, 4, 3, 2, 8, 2, 3, 4, 2, …
-$ bathrooms_text              &lt;chr&gt; &quot;1 shared bath&quot;, &quot;1 shared bath&quot;, &quot;1 bath&quot;…
-$ bedrooms                    &lt;dbl&gt; 1, 1, 1, 2, 2, 4, 1, 1, 1, 4, 1, 1, 2, NA,…
-$ beds                        &lt;dbl&gt; 1, 1, 2, 2, 3, 4, 2, 0, 1, 4, 0, 2, 2, 1, …
-$ amenities                   &lt;chr&gt; &quot;[\&quot;Heating\&quot;, \&quot;Hair dryer\&quot;, \&quot;Iron\&quot;, \…
-$ price                       &lt;dbl&gt; 39, 40, 123, 286, 140, 63, 75, 53, 150, 25…
-$ minimum_nights              &lt;dbl&gt; 2, 1, 2, 3, 4, 3, 3, 1, 3, 3, 3, 3, 3, 1, …
-$ maximum_nights              &lt;dbl&gt; 7, 365, 60, 21, 1125, 365, 31, 365, 730, 1…
-$ availability_30             &lt;dbl&gt; 0, 0, 4, 4, 2, 21, 2, 0, 0, 11, 0, 0, 23, …
-$ availability_60             &lt;dbl&gt; 0, 0, 34, 21, 21, 51, 5, 13, 0, 11, 0, 0, …
-$ number_of_reviews           &lt;dbl&gt; 245, 152, 331, 79, 4, 20, 152, 80, 0, 24, …
-$ number_of_reviews_ltm       &lt;dbl&gt; 0, 9, 3, 12, 0, 0, 31, 0, 0, 1, 6, 3, 0, 4…
-$ number_of_reviews_l30d      &lt;dbl&gt; 0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, …
-$ review_scores_rating        &lt;dbl&gt; 4.63, 4.40, 4.69, 4.61, 4.67, 4.47, 4.93, …
-$ review_scores_accuracy      &lt;dbl&gt; 4.84, 4.52, 4.82, 4.84, 4.67, 4.60, 4.93, …
-$ review_scores_cleanliness   &lt;dbl&gt; 4.53, 4.30, 4.70, 4.63, 5.00, 4.10, 4.91, …
-$ review_scores_checkin       &lt;dbl&gt; 4.90, 4.62, 4.80, 4.81, 5.00, 4.95, 4.96, …
-$ review_scores_communication &lt;dbl&gt; 4.84, 4.74, 4.79, 4.75, 5.00, 4.80, 4.97, …
-$ review_scores_location      &lt;dbl&gt; 4.83, 4.71, 4.79, 4.85, 4.00, 4.40, 4.78, …
-$ review_scores_value         &lt;dbl&gt; 4.81, 4.64, 4.73, 4.66, 4.67, 4.55, 4.92, …
-$ instant_bookable            &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRU…
-$ reviews_per_month           &lt;dbl&gt; 2.20, 1.43, 2.83, 0.69, 0.03, 0.51, 1.28, …
-$ Property_Type               &lt;chr&gt; &quot;Other&quot;, &quot;Private room in rental unit&quot;, &quot;E…</code></pre>
-<div id="a-glimpse-of-data-newlistings1-reveals-we-now-have-7400-observations-with-30-variables-this-is-much-more-accessible-date-however-we-noticed-that-there-are-a-few-price-anomolies.-therefore-using-a-summary-function-of-price-we-used-2-standard-deviations-from-the-mean-to-remove-these-anomolous-prices-in-a-new-df-called-newlistings-2.-along-with-this-we-mutated-some-of-the-variables-for-example-converting-host_verifications-to-numbers-and-making-host-acceptance-rate-to-percentage." class="section level4">
-<h4>A glimpse of data newlistings1, reveals we now have 7400 observations with 30 variables, this is much more accessible date, however we noticed that there are a few price anomolies. Therefore using a summary function of price, we used 2 standard deviations from the mean to remove these anomolous prices in a new df called newlistings 2. Along with this we mutated some of the variables for example, converting host_verifications to numbers and making host acceptance rate to percentage.</h4>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
+<h2>
+Introduction
+<h2>
+<h4>
+<p>As part of a group project at LBS, we were given a project of analysing an Airbnb data set of properties in Montreal, Canada. We were then tasked with using the data to predict the price of a couple renting a property for 4 nights. However before undertaking the task, we had to clean the data, and perform exploratory data analysis. This was my task in the group, and so below you will see my findings.</p>
+<h2>
+Analysing the Full Data Frame
+<h2>
+<h4>
+Initially glimpsing the data, there are 12540 observations of 74 variables, however not all of these will have an effect on price, such as the host_Url. Therefore we manually removed such variables, along with filtering by minimum no of nights less than 4 and accommodates 2 or more people. We called this data set newlistings1.
+<h4>
+<pre class="r"><code>newlistings1 &lt;- listings %&gt;%
+  mutate(price = parse_number(price)) %&gt;%
+  filter(minimum_nights &lt;= 4) %&gt;%
+  filter(accommodates &gt;= 2) %&gt;%
+  mutate(Property_Type = case_when(
+    property_type %in% c(
+      &quot;Entire rental unit&quot;,
+      &quot;Private room in rental unit&quot;,
+      &quot;Entire condominium (condo)&quot;,
+      &quot;Entire loft&quot;
+    ) ~ property_type,
+    TRUE ~ &quot;Other&quot;
+  ))
+
+
+## neighbourhood_cleansed (28), room_type (33), last_review (60), license (68), prop_type_simplified (75)
+newlistings1 = newlistings1[-c(1:12,
+                               13:15,
+                               19:21,
+                               23,
+                               27:29,
+                               30:33,
+                               35,
+                               43:50,
+                               53:55,
+                               59,
+                               60,
+                               68,
+                               70:73)] ## D&amp;A change 1:8, where 8 is host_since
+
+favstats(~price, data = newlistings1)</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-2">
+<col><col><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">min</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">median</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q3</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">max</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">n</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">missing</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">60</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">95</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">149</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.2e+04</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">137</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">231</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">7400</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
+</table>
+
+<h4>
+A glimpse of data newlistings1, reveals we now have 7400 observations with 30 variables, this is much more accessible date, however we noticed that there are a few price anomalies. Therefore using a summary function of price, we used 2 standard deviations from the mean to remove these anomalous prices in a new df called newlistings 2. Along with this we mutated some of the variables for example, converting host_verifications to numbers and making host acceptance rate to percentage.
+<h4>
+<h4>
+Using favstats, we also get a summary of the price data, such as the mean price; £136.9
+<h4>
+<pre class="r"><code>newlistings1 %&gt;%
+  summarise(AV = mean(price),
+            SD = sd(price))</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
 <col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">AV</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SD</th></tr>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">137</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">231</td></tr>
 </table>
 
-<p>##Now we can start to use EDA on this new dataframe, Step 1, Glimpsing the data:</p>
-<pre><code>Rows: 7,250
-Columns: 31
-$ host_response_rate          &lt;dbl&gt; 1.00, 1.00, 1.00, 1.00, 1.00, NA, 1.00, NA…
-$ host_acceptance_rate        &lt;dbl&gt; 1.00, 1.00, 0.94, 0.94, 0.00, NA, 1.00, 0.…
-$ host_is_superhost           &lt;lgl&gt; FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, T…
-$ host_listings_count         &lt;dbl&gt; 1, 6, 2, 2, 1, 2, 1, 1, 1, 0, 7, 7, 1, 0, …
-$ host_verifications          &lt;dbl&gt; 6, 7, 8, 8, 5, 5, 8, 5, 3, 4, 5, 5, 4, 6, …
-$ host_has_profile_pic        &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
-$ host_identity_verified      &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
-$ accommodates                &lt;dbl&gt; 2, 2, 4, 5, 5, 7, 4, 3, 2, 8, 2, 3, 4, 2, …
-$ bathrooms_text              &lt;dbl&gt; 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, NA…
-$ bedrooms                    &lt;dbl&gt; 1, 1, 1, 2, 2, 4, 1, 1, 1, 4, 1, 1, 2, NA,…
-$ beds                        &lt;dbl&gt; 1, 1, 2, 2, 3, 4, 2, 0, 1, 4, 0, 2, 2, 1, …
-$ amenities                   &lt;dbl&gt; 14, 47, 32, 38, 23, 28, 52, 40, 2, 40, 22,…
-$ price                       &lt;dbl&gt; 39, 40, 123, 286, 140, 63, 75, 53, 150, 25…
-$ minimum_nights              &lt;dbl&gt; 2, 1, 2, 3, 4, 3, 3, 1, 3, 3, 3, 3, 3, 1, …
-$ maximum_nights              &lt;dbl&gt; 7, 365, 60, 21, 1125, 365, 31, 365, 730, 1…
-$ availability_30             &lt;dbl&gt; 0, 0, 4, 4, 2, 21, 2, 0, 0, 11, 0, 0, 23, …
-$ availability_60             &lt;dbl&gt; 0, 0, 34, 21, 21, 51, 5, 13, 0, 11, 0, 0, …
-$ number_of_reviews           &lt;dbl&gt; 245, 152, 331, 79, 4, 20, 152, 80, 0, 24, …
-$ number_of_reviews_ltm       &lt;dbl&gt; 0, 9, 3, 12, 0, 0, 31, 0, 0, 1, 6, 3, 0, 4…
-$ number_of_reviews_l30d      &lt;dbl&gt; 0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, …
-$ review_scores_rating        &lt;dbl&gt; 4.63, 4.40, 4.69, 4.61, 4.67, 4.47, 4.93, …
-$ review_scores_accuracy      &lt;dbl&gt; 4.84, 4.52, 4.82, 4.84, 4.67, 4.60, 4.93, …
-$ review_scores_cleanliness   &lt;dbl&gt; 4.53, 4.30, 4.70, 4.63, 5.00, 4.10, 4.91, …
-$ review_scores_checkin       &lt;dbl&gt; 4.90, 4.62, 4.80, 4.81, 5.00, 4.95, 4.96, …
-$ review_scores_communication &lt;dbl&gt; 4.84, 4.74, 4.79, 4.75, 5.00, 4.80, 4.97, …
-$ review_scores_location      &lt;dbl&gt; 4.83, 4.71, 4.79, 4.85, 4.00, 4.40, 4.78, …
-$ review_scores_value         &lt;dbl&gt; 4.81, 4.64, 4.73, 4.66, 4.67, 4.55, 4.92, …
-$ instant_bookable            &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRU…
-$ reviews_per_month           &lt;dbl&gt; 2.20, 1.43, 2.83, 0.69, 0.03, 0.51, 1.28, …
-$ Property_Type               &lt;chr&gt; &quot;Other&quot;, &quot;Private room in rental unit&quot;, &quot;E…
-$ shared_bathroom             &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FAL…</code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
+<pre class="r"><code>newlistings2 &lt;- newlistings1 %&gt;%
+  filter(price &lt;= 598.8833)  %&gt;%
+  ## added to count the number of &quot;verification&quot; and amenities -- D&amp;A
+  mutate(host_verifications = stringr::str_count(host_verifications, &#39;,&#39;) + 1) %&gt;%
+  mutate(amenities = stringr::str_count(amenities, &#39;,&#39;) + 1) %&gt;%
+  
+  ## transform character into numerics
+  mutate(host_response_rate = as.numeric(sub(&quot;%&quot;, &quot;&quot;, host_response_rate)) /
+           100) %&gt;%
+  mutate(host_acceptance_rate = as.numeric(sub(&quot;%&quot;, &quot;&quot;, host_acceptance_rate)) /
+           100) %&gt;%
+  
+  ## create new variable checking if there are shared bathrooms or not
+  mutate(shared_bathroom = grepl(&quot;shared&quot;, bathrooms_text, fixed = TRUE)) %&gt;%
+  
+  ## convert &quot;bathroom text&quot; into a numeric
+  mutate(bathrooms_text = as.numeric(sapply(strsplit(bathrooms_text, &quot; &quot;), &quot;[[&quot;, 1))) </code></pre>
+<h2>
+<p>EDA 1</p>
+<h4>
+Now we can start to use EDA on this new dataframe, Step 1, Glimpsing the data:
+<h4>
+<pre class="r"><code>favstats(~price, data = newlistings2)</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <col><col><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">min</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">median</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q3</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">max</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">n</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">missing</th></tr>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">59</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">94</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">143</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">597</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">115</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">86</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">7250</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
 </table>
 
-<p>####Here we see there are now 7250 observation due to removing the price anomolies, and there are 31 variables, as we have added back in shared_bathrooms. Using favstat we can see that the mean has decreased slightly, however the SD has decreased by 3x.</p>
-<p>##EDA 2</p>
+<h4>
+Here we see there are now 7250 observation due to removing the price anomalies, and there are 31 variables, as we created a new variable; whether or not different guests at the properties have to share bathrooms, as we believed this would be important in determining price. Using favstat we can see that the mean has decreased slightly, however the SD has decreased by 3x.
+<h4>
+<h2>
+EDA 2
+<h2>
 <table style='width: auto;'
         class='table table-condensed'>
 <caption>
-<span id="tab:unnamed-chunk-5">Table 1: </span>Data summary
+<span id="tab:unnamed-chunk-7">Table 1: </span>Data summary
 </caption>
 <thead>
 <tr>
@@ -1279,26 +1292,61 @@ reviews_per_month
 </tr>
 </tbody>
 </table>
-<p>####Using this, we can see; there are 1 character variable, 5 logics and 25 numeric variables.</p>
-<p>##EDA 3</p>
-<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
-</div>
-<div id="the-above-plot-shows-the-price-of-the-airbnb-against-the-amenities-they-offer-coloured-by-property-type.-from-the-graph-it-shows-little-correlation-between-price-and-amenities.-we-beleive-this-is-the-case-because-the-price-of-the-amenities-are-fairly-low-such-as-hair-dryers-heating-bed-linen-etc-therefore-no-matter-if-the-price-of-the-accomadation-is-low-it-is-still-faesible-to-afford-the-amenities.-the-plot-does-show-that-the-majoirty-of-the-properties-have-a-price-less-than-200." class="section level4">
-<h4>The above plot shows the price of the AirBnB against the amenities they offer, coloured by property type. From the graph it shows little correlation between price and amenities. We beleive this is the case because the price of the amenities are fairly low, such as hair dryers, heating, bed linen etc, therefore no matter if the price of the accomadation is low it is still faesible to afford the amenities. The plot does show that the majoirty of the properties have a price less than $200.</h4>
-</div>
-<div id="however-there-is-a-correlation-between-price-and-private-rooms.-these-are-all-clustered-in-the-200-section-with-a-few-outliers-this-could-be-due-to-the-lack-of-desire-to-share-a-house-with-others-and-therefore-it-drives-the-price-of-the-property-down." class="section level4">
-<h4>However there is a correlation between price and private rooms. These are all clustered in the &lt;£200 section with a few outliers, this could be due to the lack of desire to share a house with others and therefore it drives the price of the property down.</h4>
-<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
-</div>
-<div id="this-plot-is-the-same-as-the-above-however-we-have-decided-to-use-log-of-price-as-it-produces-a-more-normal-distrubution-it-is-here-a-lot-clearer-to-see-the-shared-rooms-are-the-most-affordable-ones.-we-will-continue-therefore-to-use-log-price-from-now-on." class="section level4">
-<h4>This plot is the same as the above however we have decided to use log of price as it produces a more normal distrubution, it is here a lot clearer to see the shared rooms are the most affordable ones. We will continue therefore to use log price from now on.</h4>
-<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-8-1.png" width="2100" /><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-8-2.png" width="2100" /></p>
-<p>####The above plots shows a histogram for the price of the properties one with logscale one without. It is clear from the first graph there is positively skewed distrubution, and by using the log scale it normalises it. This is better for regression models. In both plots we can use the mean line to see the mean price is around £115.</p>
+<h4>
+Using this, we can see; there are 1 character variable, 5 logics and 25 numeric variables.
+<h4>
+<h2>
+EDA 3
+<h2>
+<h4>
+Now i have performed initial anaylsis, i decided to experiment with several plots;
+<h4>
+<h3>
+Plot 1
+<h3>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-8-1.png" width="2100" /></p>
+<h4>
+The above plot shows the price of the AirBnB against the amenities they offer, colored by property type. From the graph it shows little correlation between price and amenities. We believe this is the case because the price of the amenities are fairly low, such as hair dryers, heating, bed linen etc, therefore no matter if the price of the accommodation is low it is still feasible to afford the amenities. The plot does show however that the majority of the properties have a price less than $200, but less of a correlation between price and property type for the others.
+<h4>
+<h4>
+However there is a correlation between price and private rooms. These are all clustered in the &lt;£200 section with a few outliers, this could be due to the lack of desire to share a house with others and therefore it drives the price of the property down.
+<h4>
+<h3>
+Plot 2
+<h3>
 <p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-9-1.png" width="2100" /></p>
-<p>####This plot shows a great negative skew to the 5* rating, i.e. the majority of ratings are 5<em>. As the ratings are high, before doing any analysis i could hypothesise that this may mean reviews don’t have much bearing on price because, the majority of reviews are 5</em>, however not all the prices are high.</p>
-<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-10-1.png" width="2100" /></p>
-<p>####The boxplot shows super host to log price, cleary the mean price for the superhosts are greater than that of those who aren’t. I would suggest this is because these hosts are seen to be superior and therefore can charge more, especially if this correlates with having more amenities, better response time etc. Surprisngly however the most expensive property is for someone without a superhost, but the superhosts have a greater minimum price because they know they can charge more for the property. The IQR and range is smaller for superhosts, this could be because they know how much they can charge, compared to normal hosts who may have less experience with airbnb.</p>
+<h4>
+This plot is the same as the above, however we have decided to use log of price as it produces a more normal distribution, it is here a lot clearer to see the shared rooms are the most affordable ones, and further shows lack of correlation between the others. We will continue therefore to use log price from now on.
+<h4>
+<p>&lt;h3 Plot 3 &amp; 4&gt;
+<img src="/blogs/airbnb_files/figure-html/unnamed-chunk-10-1.png" width="2100" /><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-10-2.png" width="2100" /></p>
+<h4>
+The above plots shows a histogram for the price of the properties one with logscale one without. It is clear from the first graph there is positively skewed distrubution, and by using the log scale it normalises it. This is better for regression models. In both plots we can use the mean line to see the mean price is around £115.
+<h4>
+<h5>
+Plot 5
+<h5>
 <p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-11-1.png" width="2100" /></p>
-<p>####Using ggpairs i can see the correlations between variables. The greatest correlation is number of bedrooms and number the property sleeps. This is expected as the more rooms the more the property can sleep. The 2nd highest correlation is between review value and review location, this must be because there nicer the location the greater the review. This is expected, better locations better reviews. Correlations between availability and reviews are negatively correlated slightly. This suggest the more availaibilty the worse the review, which makes sense. If the property is free more often this could be because it isn’t the best property which would bring with it worse reviews.</p>
-<p>####Accomadates, bathrooms, bedrooms, price, availibility all have a positve skew, whilst reviews have a negative skew.</p>
-</div>
+<h4>
+This plot shows a great negative skew to the 5* rating, i.e. the majority of ratings are 5<em>. As the ratings are high, before doing any analysis it could suggest that this may mean reviews don’t have much bearing on price because, the majority of reviews are 5</em>, however not all the prices are high.
+<h4>
+<h2>
+Plot 6
+<h2>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-12-1.png" width="2100" /></p>
+<h4>
+The boxplot shows super host to log price, clearly the mean price for the superhosts are greater than that of those who aren’t. I would suggest this is because, super hosts are seen to be superior and therefore can charge more, especially if this correlates with having more amenities, better response time etc. Surprisingly however the most expensive property is for someone without a super host status. The super hosts on the other hand have a greater minimum price because they know they can charge more for the property. The IQR and range is smaller for super hosts, this could be because they know how much they can charge, compared to normal hosts who may have less experience with Airbnb.
+<h4>
+<h3>
+Plot 7
+<h3>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-13-1.png" width="2100" /></p>
+<h4>
+Using ggpairs i can see correlations between variables. The greatest correlation is number of bedrooms and number the property sleeps. This is expected as the more rooms the more the property can sleep. The 2nd highest correlation is between review value and review location, this must be because there nicer the location the greater the review. This is expected, better locations better reviews. Correlations between availability and reviews are negatively correlated slightly. This suggest the more availability the worse the review, which makes sense. If the property is free more often this could be because it isn’t the best property which would bring with it worse reviews.
+<h4>
+<h4>
+Accommodates, bathrooms, bedrooms, price, availability all have a positive skew, whilst reviews have a negative skew.
+<h4>
+<h3>
+This is the start of our project, i hope to update it as it continues, so feel free to visit again!
+<h3>
