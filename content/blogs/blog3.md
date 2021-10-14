@@ -19,8 +19,11 @@ Fast forward a few years, and i was playing first XV at St Ambrose and played fo
 
 Other than rugby, i love hacking my way around the golf course, and now i'm in London i have picked tennis and swimming back up.
 
-My other sporting loves are skiing and any water activity, whether that be surfing, sailing, hydrofoling, kitesurfing or wakeboarding. 
+My other sporting loves are skiing and any water activity, whether that be surfing, sailing, hydrofoilng, kitesurfing or wakeboarding. 
 
 I've been fortunate enough to had the opportunity to go skiing from a young age, and it has bought along with it some of the best experiences ever, from dad's and lad's holidays to having 1500 uni students in the Folie Douche.
 
+![](Users/samnanda/Desktop/LBS/Data Analytics for Finance/my_website/static/img/blogs/IMG_0504.jpeg)
+![](my_website/static/img/blogs/IMG_0504.jpeg)
 ![](static/img/blogs/IMG_0504.jpeg)
+![](IMG_0504.jpeg)
