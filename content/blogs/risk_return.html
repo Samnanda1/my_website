@@ -1,0 +1,111 @@
+---
+categories:  
+- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
+- ""
+date: "2021-09-30"
+description: Risk-Return of DJIA stocks # the title that will show up once someone gets to this page
+draft: false
+#image: spices.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
+keywords: ""
+slug: risk_return # slug is the shorthand URL address... no spaces plz
+title: Risk-Return of DJIA stocks
+---
+
+
+
+<div id="returns-of-financial-stocks" class="section level1">
+<h1>Returns of financial stocks</h1>
+<p>Next, let’s choose the <a href="https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average">Dow Jones Industrial Average (DJIA)</a> stocks and their ticker symbols and download some data. Besides the thirty stocks that make up the DJIA, we will also add <code>SPY</code> which is an SP500 ETF (Exchange Traded Fund).</p>
+<p>We will use the <code>rvest</code> package to scrape the Wikipedia page for the constituents of DJIA</p>
+<pre class="r"><code>djia_url &lt;- &quot;https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average&quot;
+
+
+#get tables that exist on URL
+tables &lt;- djia_url %&gt;% 
+  read_html() %&gt;% 
+  html_nodes(css=&quot;table&quot;)
+
+
+# parse HTML tables into a dataframe called djia. 
+# Use purr::map() to create a list of all tables in URL
+djia &lt;- map(tables, . %&gt;% 
+               html_table(fill=TRUE)%&gt;% 
+               clean_names())
+
+
+# constituents
+table1 &lt;- djia[[2]] %&gt;% # the second table on the page contains the ticker symbols
+  mutate(date_added = ymd(date_added),
+         
+         # if a stock is listed on NYSE, its symbol is, e.g., NYSE: MMM
+         # We will get prices from yahoo finance which requires just the ticker
+         
+         # if symbol contains &quot;NYSE*&quot;, the * being a wildcard
+         # then we jsut drop the first 6 characters in that string
+         ticker = ifelse(str_detect(symbol, &quot;NYSE*&quot;),
+                          str_sub(symbol,7,11),
+                          symbol)
+         )
+
+# we need a vector of strings with just the 30 tickers + SPY  + VIX
+tickers &lt;- table1 %&gt;% 
+  select(ticker) %&gt;% 
+  pull() %&gt;% # pull() gets them as a sting of characters
+  c(&quot;SPY&quot;, &quot;^VIX&quot;) # and lets us add SPY, the SP500 ETF, and the VIX index</code></pre>
+<pre class="r"><code># Notice the cache=TRUE argument in the chunk options. Because getting data is time consuming, # cache=TRUE means that once it downloads data, the chunk will not run again next time you knit your Rmd
+
+myStocks &lt;- tickers %&gt;% 
+  tq_get(get  = &quot;stock.prices&quot;,
+         from = &quot;2000-01-01&quot;) %&gt;%
+  group_by(symbol) 
+
+glimpse(myStocks) # examine the structure of the resulting data frame</code></pre>
+<pre><code>## Rows: 167,375
+## Columns: 8
+## Groups: symbol [32]
+## $ symbol   &lt;chr&gt; &quot;MMM&quot;, &quot;MMM&quot;, &quot;MMM&quot;, &quot;MMM&quot;, &quot;MMM&quot;, &quot;MMM&quot;, &quot;MMM&quot;, &quot;MMM&quot;, &quot;MMM&quot;…
+## $ date     &lt;date&gt; 2000-01-03, 2000-01-04, 2000-01-05, 2000-01-06, 2000-01-07, …
+## $ open     &lt;dbl&gt; 48.0, 46.4, 45.6, 47.2, 50.6, 50.2, 50.4, 51.0, 50.7, 50.4, 4…
+## $ high     &lt;dbl&gt; 48.2, 47.4, 48.1, 51.2, 51.9, 51.8, 51.2, 51.8, 50.9, 50.5, 4…
+## $ low      &lt;dbl&gt; 47.0, 45.3, 45.6, 47.2, 50.0, 50.0, 50.2, 50.4, 50.2, 49.5, 4…
+## $ close    &lt;dbl&gt; 47.2, 45.3, 46.6, 50.4, 51.4, 51.1, 50.2, 50.4, 50.4, 49.7, 4…
+## $ volume   &lt;dbl&gt; 2173400, 2713800, 3699400, 5975800, 4101200, 3863800, 2357600…
+## $ adjusted &lt;dbl&gt; 27.2, 26.1, 26.9, 29.0, 29.6, 29.4, 28.9, 29.0, 29.0, 28.6, 2…</code></pre>
+<p>Financial performance analysis depend on returns; If I buy a stock today for 100 and I sell it tomorrow for 101.75, my one-day return, assuming no transaction costs, is 1.75%. So given the adjusted closing prices, our first step is to calculate daily and monthly returns.</p>
+<pre class="r"><code>#calculate daily returns
+myStocks_returns_daily &lt;- myStocks %&gt;%
+  tq_transmute(select     = adjusted, 
+               mutate_fun = periodReturn, 
+               period     = &quot;daily&quot;, 
+               type       = &quot;log&quot;,
+               col_rename = &quot;daily_returns&quot;,
+               cols = c(nested.col))  
+
+#calculate monthly  returns
+myStocks_returns_monthly &lt;- myStocks %&gt;%
+  tq_transmute(select     = adjusted, 
+               mutate_fun = periodReturn, 
+               period     = &quot;monthly&quot;, 
+               type       = &quot;arithmetic&quot;,
+               col_rename = &quot;monthly_returns&quot;,
+               cols = c(nested.col)) </code></pre>
+<pre class="r"><code>#visualise monthly returns since 2010, for each of the 30 DJIA stocks
+myStocks_returns_monthly %&gt;% 
+  filter(symbol != &quot;^VIX&quot;, symbol != &quot;SPY&quot;) %&gt;% 
+  filter(date &gt;= &quot;2010-01-01&quot;) %&gt;% 
+  ggplot(aes(x = monthly_returns)) +
+  geom_density(aes(colour = symbol), alpha = 1) +
+  geom_histogram(aes(fill = symbol), alpha = 0.4, binwidth = 0.005)+
+  facet_wrap(~symbol, nrow=7)+
+  theme_bw(8)+
+  theme(legend.position = &quot;none&quot;) +
+  scale_x_continuous(labels = scales::percent) +
+  labs(
+    title = &quot;Distribution of monthly returns for DJIA stocks&quot;,
+    subtitle = &quot;Jan 2010 - now&quot;,
+    x = &quot;Monthly returns (%)&quot;,
+    y = &quot;&quot; )+
+  NULL</code></pre>
+<p><img src="/blogs/risk_return_files/figure-html/unnamed-chunk-1-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p><img src="/blogs/risk_return_files/figure-html/risk_return-1.png" width="648" style="display: block; margin: auto;" /></p>
+</div>
