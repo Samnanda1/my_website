@@ -8,148 +8,241 @@ draft: false
 #image: spices.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
 keywords: ""
 slug: risk_return # slug is the shorthand URL address... no spaces plz
-title: Risk-Return of DJIA stocks
+title: Risk-Return of DJIA stock
 ---
-  
 
-
-
-```{r, setup, echo=FALSE}
-knitr::opts_chunk$set(
-  message = FALSE, 
-  warning = FALSE, 
-  tidy=FALSE,     # display code as typed
-  size="small")   # slightly smaller font for code
-options(digits = 3)
-
-# default figure size
-knitr::opts_chunk$set(
-  fig.width=6.75, 
-  fig.height=6.75,
-  fig.align = "center"
-)
+```{r setup, include=FALSE}
+# leave this chunk alone
+options(knitr.table.format = "html") 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+  comment = NA, dpi = 300)
 ```
 
 
-```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
-library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
-library(lubridate)
-library(here)
-library(skimr)
-library(janitor)
+```{r load-libraries, echo=FALSE}
+
+library(tidyverse) # the usual stuff: dplyr, readr, and other goodies
+library(lubridate) # to handle dates
+library(GGally) # for correlation-scatter plot matrix
+library(ggfortify) # to produce residual diagnostic plots
+library(rsample) # to split dataframe in training- & testing sets
+library(janitor) # clean_names()
+library(broom) # use broom:augment() to get tidy table with regression output, residuals, etc
+library(huxtable) # to get summary table of all models produced
+library(kableExtra) # for formatting tables
+library(moderndive) # for getting regression tables
+library(skimr) # for skim
+library(mosaic)
+library(leaflet) # for interactive HTML maps
+library(tidytext)
+library(viridis)
 library(vroom)
-library(tidyquant)
-library(rvest)    # scrape websites
-library(purrr)  
-library(lubridate) #to handle dates
-library(ggrepel)
-```
-
-
-# Returns of financial stocks
-
-Next, let's choose the [Dow Jones Industrial Average (DJIA)](https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average) stocks and their ticker symbols and download some data. Besides the thirty stocks that make up the DJIA, we will also add `SPY` which is an SP500 ETF (Exchange Traded Fund).
-
-We will use the `rvest` package to scrape the Wikipedia page for the constituents of DJIA
-
-```{r, tickers_from_wikipedia}
-
-djia_url <- "https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average"
-
-
-#get tables that exist on URL
-tables <- djia_url %>% 
-  read_html() %>% 
-  html_nodes(css="table")
-
-
-# parse HTML tables into a dataframe called djia. 
-# Use purr::map() to create a list of all tables in URL
-djia <- map(tables, . %>% 
-               html_table(fill=TRUE)%>% 
-               clean_names())
-
-
-# constituents
-table1 <- djia[[2]] %>% # the second table on the page contains the ticker symbols
-  mutate(date_added = ymd(date_added),
-         
-         # if a stock is listed on NYSE, its symbol is, e.g., NYSE: MMM
-         # We will get prices from yahoo finance which requires just the ticker
-         
-         # if symbol contains "NYSE*", the * being a wildcard
-         # then we jsut drop the first 6 characters in that string
-         ticker = ifelse(str_detect(symbol, "NYSE*"),
-                          str_sub(symbol,7,11),
-                          symbol)
-         )
-
-# we need a vector of strings with just the 30 tickers + SPY  + VIX
-tickers <- table1 %>% 
-  select(ticker) %>% 
-  pull() %>% # pull() gets them as a sting of characters
-  c("SPY", "^VIX") # and lets us add SPY, the SP500 ETF, and the VIX index
-
+library(dplyr)
 ```
 
 
 
+```{r load_data, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
 
-```{r get_price_data, message=FALSE, warning=FALSE, cache=TRUE}
-# Notice the cache=TRUE argument in the chunk options. Because getting data is time consuming, # cache=TRUE means that once it downloads data, the chunk will not run again next time you knit your Rmd
+# use cache=TRUE so you dont donwload the data everytime you knit
 
-myStocks <- tickers %>% 
-  tq_get(get  = "stock.prices",
-         from = "2000-01-01") %>%
-  group_by(symbol) 
+listings <- vroom("http://data.insideairbnb.com/canada/qc/montreal/2021-09-14/data/listings.csv.gz") %>% 
+       clean_names()
 
-glimpse(myStocks) # examine the structure of the resulting data frame
 ```
 
-Financial performance analysis depend on returns; If I buy a stock today for 100 and I sell it tomorrow for 101.75, my one-day return, assuming no transaction costs, is 1.75%. So given the adjusted closing prices, our first step is to calculate daily and monthly returns.
+
+```{r, echo=FALSE}
+glimpse(listings)
+```
+##Project
+
+####Initially glimpsing the data, there are 12540 observations of 74 variables, however not all of these will have an effect on price, such as the host_Url. Therefore we manually removed such varibales, along with filtering by minimum no of nights less than 4 and accomodates 2 or more people. We called this data set newlistings 2.
+
+```{r, echo=FALSE}
+newlistings1 <- listings %>%
+  mutate(price = parse_number(price)) %>%
+  filter(minimum_nights <= 4) %>%
+  filter(accommodates >= 2) %>%
+  mutate(Property_Type = case_when(
+    property_type %in% c(
+      "Entire rental unit",
+      "Private room in rental unit",
+      "Entire condominium (condo)",
+      "Entire loft"
+    ) ~ property_type,
+    TRUE ~ "Other"
+  ))
 
 
-```{r calculate_returns, message=FALSE, warning=FALSE, cache=TRUE}
-#calculate daily returns
-myStocks_returns_daily <- myStocks %>%
-  tq_transmute(select     = adjusted, 
-               mutate_fun = periodReturn, 
-               period     = "daily", 
-               type       = "log",
-               col_rename = "daily_returns",
-               cols = c(nested.col))  
+## neighbourhood_cleansed (28), room_type (33), last_review (60), license (68), prop_type_simplified (75)
+newlistings1 = newlistings1[-c(1:12,
+                               13:15,
+                               19:21,
+                               23,
+                               27:29,
+                               30:33,
+                               35,
+                               43:50,
+                               53:55,
+                               59,
+                               60,
+                               68,
+                               70:73)] ## D&A change 1:8, where 8 is host_since
 
-#calculate monthly  returns
-myStocks_returns_monthly <- myStocks %>%
-  tq_transmute(select     = adjusted, 
-               mutate_fun = periodReturn, 
-               period     = "monthly", 
-               type       = "arithmetic",
-               col_rename = "monthly_returns",
-               cols = c(nested.col)) 
+glimpse(newlistings1)
+
 ```
 
-```{r}
-#visualise monthly returns since 2010, for each of the 30 DJIA stocks
-myStocks_returns_monthly %>% 
-  filter(symbol != "^VIX", symbol != "SPY") %>% 
-  filter(date >= "2010-01-01") %>% 
-  ggplot(aes(x = monthly_returns)) +
-  geom_density(aes(colour = symbol), alpha = 1) +
-  geom_histogram(aes(fill = symbol), alpha = 0.4, binwidth = 0.005)+
-  facet_wrap(~symbol, nrow=7)+
-  theme_bw(8)+
+#### A glimpse of data newlistings1, reveals we now have 7400 observations with 30 variables, this is much more accessible date, however we noticed that there are a few price anomolies. Therefore using a summary function of price, we used 2 standard deviations from the mean to remove these anomolous prices in a new df called newlistings 2. Along with this we mutated some of the variables for example, converting host_verifications to numbers and making host acceptance rate to percentage. 
+
+```{r, echo=FALSE}
+newlistings1 %>%
+  summarise(AV = mean(price),
+            SD = sd(price))
+
+newlistings2 <- newlistings1 %>%
+  filter(price <= 598.8833)  %>%
+  ## added to count the number of "verification" and amenities -- D&A
+  mutate(host_verifications = stringr::str_count(host_verifications, ',') + 1) %>%
+  mutate(amenities = stringr::str_count(amenities, ',') + 1) %>%
+  
+  ## transform character into numerics
+  mutate(host_response_rate = as.numeric(sub("%", "", host_response_rate)) /
+           100) %>%
+  mutate(host_acceptance_rate = as.numeric(sub("%", "", host_acceptance_rate)) /
+           100) %>%
+  
+  ## create new variable checking if there are shared bathrooms or not
+  mutate(shared_bathroom = grepl("shared", bathrooms_text, fixed = TRUE)) %>%
+  
+  ## convert "bathroom text" into a numeric
+  mutate(bathrooms_text = as.numeric(sapply(strsplit(bathrooms_text, " "), "[[", 1))) 
+  
+```
+
+##Now we can start to use EDA on this new dataframe, Step 1, Glimpsing the data:
+  
+```{r, echo=FALSE}
+glimpse(newlistings2)
+favstats(~price, data = newlistings2)
+```
+
+####Here we see there are now 7250 observation due to removing the price anomolies, and there are 31 variables, as we have added back in shared_bathrooms. Using favstat we can see that the mean has decreased slightly, however the SD has decreased by 3x. 
+
+##EDA 2
+
+```{r, echo=FALSE}
+skimr::skim(newlistings2)
+```
+
+####Using this, we can see; there are 1 character variable, 5 logics and 25 numeric variables.
+
+##EDA 3
+
+```{r, echo=FALSE}
+#Plot 1
+ggplot(newlistings2, aes(x = price, y = amenities, colour = Property_Type)) + #Plotting a scatter plot of price against amenities and classifying the points by property type
+  geom_point() +
+  labs (#Axis Titles and Labels
+    x = "Price",
+    y = "Amenities") +
+  ggtitle("Scatter Plot to Show Price against Amenities") +
+  theme_bw()
+```
+
+#### The above plot shows the price of the AirBnB against the amenities they offer, coloured by property type. From the graph it shows little correlation between price and amenities. We beleive this is the case because the price of the amenities are fairly low, such as hair dryers, heating, bed linen etc, therefore no matter if the price of the accomadation is low it is still faesible to afford the amenities. The plot does show that the majoirty of the properties have a price less than $200.
+
+#### However there is a correlation between price and private rooms. These are all clustered in the <£200 section with a few outliers, this could be due to the lack of desire to share a house with others and therefore it drives the price of the property down.
+
+```{r, echo=FALSE}
+#Plot 2
+ggplot(newlistings2, aes(x = price, y = amenities, colour = Property_Type)) + #Plotting a scatter plot of price against amenities and classifying the points by property type
+  geom_point() +
+  scale_x_log10(labels = scales::comma) +
+  labs (#Axis Titles and Labels
+    x = "Price",
+    y = "Amenities") +
+  ggtitle("Scatter Plot to Show Price against Amenities") +
+  theme_bw()
+```
+
+#### This plot is the same as the above however we have decided to use log of price as it produces a more normal distrubution, it is here a lot clearer to see the shared rooms are the most affordable ones. We will continue therefore to use log price from now on.
+
+```{r, echo=FALSE}
+#Plot 3
+ggplot(newlistings2, aes(x = price, alpha = 0.6)) + #Plotting a histogram of price
+  geom_histogram(aes(y = ..density..), colour = "black", fill = "blue") +
+  #scale_x_log10(labels = scales::comma) + #Changing to Log Scale
+  labs (#Axis Titles and Labels
+    x = "Price",
+    y = "Frequency Density") +
+  ggtitle("Histogram to Show Log Price") +
+  theme_bw() +
+  geom_vline(aes(xintercept = mean(price)),col='red',size=2, alpha = 0.6)
+
+ggplot(newlistings2, aes(x = price, alpha = 0.6)) + #Plotting a histogram of price
+  geom_histogram(aes(y = ..density..), colour = "black", fill = "blue") +
+  scale_x_log10(labels = scales::comma) + #Changing to Log Scale
+  labs (#Axis Titles and Labels
+    x = "Price",
+    y = "Frequency Density") +
+  ggtitle("Histogram to Show Log Price") +
+  theme_bw() +
+  geom_vline(aes(xintercept = mean(price)),col='red',size=2, alpha = 0.6)
+```
+
+####The above plots shows a histogram for the price of the properties one with logscale one without. It is clear from the first graph there is positively skewed distrubution, and by using the log scale it normalises it. This is better for regression models. In both plots we can use the mean line to see the mean price is around £115.
+
+```{r, echo=FALSE}
+#Plot 4
+ggplot(newlistings2, aes(x = review_scores_rating)) + #Plotting a density plot for Amenities
+  geom_density(aes(fill = "pink", alpha = 0.5)) +
+  labs (#Axis Titles and Labels
+    x = "Review Rating",
+    y = "Frequency Density") +
+  ggtitle("Density Plot to Show Review Rating") +
   theme(legend.position = "none") +
-  scale_x_continuous(labels = scales::percent) +
-  labs(
-    title = "Distribution of monthly returns for DJIA stocks",
-    subtitle = "Jan 2010 - now",
-    x = "Monthly returns (%)",
-    y = "" )+
-  NULL
-
-
+  theme_bw()
 ```
+
+####This plot shows a great negative skew to the 5* rating, i.e. the majority of ratings are 5*. As the ratings are high, before doing any analysis i could hypothesise that this may mean reviews don't have much bearing on price because, the majority of reviews are 5*, however not all the prices are high.
+
+```{r, echo=FALSE}
+#Plot 5
+superhost <- scatterplot[c(1,5)] #removing na's from superhost variable
+superhost1 <- na.omit(superhost)
+
+ggplot(superhost1, aes(x=price, y = host_is_superhost, fill = host_is_superhost)) + #Plotting a density plot for Amenities
+  geom_boxplot() +
+  scale_x_log10(labels = scales::comma) +
+  labs (#Axis Titles and Labels
+    x = "Price",
+    y = "Super Host") +
+  ggtitle("Boxplot to Show Super Hosts to Price") +
+  theme(legend.position = NULL) +
+  theme_bw()
+```
+
+####The boxplot shows super host to log price, cleary the mean price for the superhosts are greater than that of those who aren't. I would suggest this is because these hosts are seen to be superior and therefore can charge more, especially if this correlates with having more amenities, better response time etc. Surprisngly however the most expensive property is for someone without a superhost, but the superhosts have a greater minimum price because they know they can charge more for the property. The IQR and range is smaller for superhosts, this could be because they know how much they can charge, compared to normal hosts who may have less experience with airbnb.
+
+
+```{r, echo=FALSE}
+#Plot 6 
+scatterplot <- newlistings2[-c(1:2, #creating a new scatter plot df of variables that the full linear model found to be the most statistically signifcant.
+                               4:7,
+                               11:12,
+                               14:15,
+                               17:21,
+                               22:25,
+                               29:30
+                               )]
+GGally::ggpairs(scatterplot) # Running GG pairs to check relationships between variables
+```
+
+####Using ggpairs i can see the correlations between variables. The greatest correlation is number of bedrooms and number the property sleeps. This is expected as the more rooms the more the property can sleep. The 2nd highest correlation is between review value and review location, this must be because there nicer the location the greater the review. This is expected, better locations better reviews. Correlations between availability and reviews are negatively correlated slightly. This suggest the more availaibilty the worse the review, which makes sense. If the property is free more often this could be because it isn't the best property which would bring with it worse reviews. 
+
+####Accomadates, bathrooms, bedrooms, price, availibility all have a positve skew, whilst reviews have a negative skew.
 
 
 ```{r, risk_return, echo=FALSE}

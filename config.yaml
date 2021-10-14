@@ -94,8 +94,8 @@ params:
         url: blogs/cv
       - image: projects/coding.JPEG
        # subtitle: Feugiat Amet Tempus
-        title: Coding
-        url: blogs/Airbnb
+        title: Coding Project
+        url: blogs/airbnb
       - image: projects/sleone.jpg
        # subtitle: Lorem Etiam Nullam
         title: Charity Work

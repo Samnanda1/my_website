@@ -1,16 +1,15 @@
 ---
-categories:
+categories:  
+- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
 - ""
-- ""
-date: "2017-10-31T22:26:13-05:00"
-description: "Click here to see my project on AirBnb Properties in Montreal"
+date: "2021-09-30"
+description: Risk-Return of DJIA stocks # the title that will show up once someone gets to this page
 draft: false
-#image: coding.jpg
+#image: spices.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
 keywords: ""
-slug: Airbnb
-title: Coding
+slug: airbnb # slug is the shorthand URL address... no spaces plz
+title: Risk-Return of DJIA stock
 ---
-
 
 ```{r setup, include=FALSE}
 # leave this chunk alone
@@ -56,9 +55,9 @@ listings <- vroom("http://data.insideairbnb.com/canada/qc/montreal/2021-09-14/da
 ```{r, echo=FALSE}
 glimpse(listings)
 ```
+##Project
 
-
-#Initially glimpsing the data, there are 12540 observations of 74 variables, however not all of these will have an effect on price, such as the host_Url. Therefore we manually removed such varibales, along with filtering by minimum no of nights less than 4 and accomodates 2 or more people. We called this data set newlistings 2.
+####Initially glimpsing the data, there are 12540 observations of 74 variables, however not all of these will have an effect on price, such as the host_Url. Therefore we manually removed such varibales, along with filtering by minimum no of nights less than 4 and accomodates 2 or more people. We called this data set newlistings 2.
 
 ```{r, echo=FALSE}
 newlistings1 <- listings %>%
@@ -95,7 +94,7 @@ glimpse(newlistings1)
 
 ```
 
-## A glimpse of data newlistings1, reveals we now have 7400 observations with 30 variables, this is much more accessible date, however we noticed that there are a few price anomolies. Therefore using a summary function of price, we used 2 standard deviations from the mean to remove these anomolous prices in a new df called newlistings 2. Along with this we mutated some of the variables for example, converting host_verifications to numbers and making host acceptance rate to percentage. 
+#### A glimpse of data newlistings1, reveals we now have 7400 observations with 30 variables, this is much more accessible date, however we noticed that there are a few price anomolies. Therefore using a summary function of price, we used 2 standard deviations from the mean to remove these anomolous prices in a new df called newlistings 2. Along with this we mutated some of the variables for example, converting host_verifications to numbers and making host acceptance rate to percentage. 
 
 ```{r, echo=FALSE}
 newlistings1 %>%
@@ -122,24 +121,24 @@ newlistings2 <- newlistings1 %>%
   
 ```
 
-#Now we can start to use EDA on this new dataframe, Step 1, Glimpsing the data:
+##Now we can start to use EDA on this new dataframe, Step 1, Glimpsing the data:
   
 ```{r, echo=FALSE}
 glimpse(newlistings2)
 favstats(~price, data = newlistings2)
 ```
 
-#Here we see there are now 7250 observation due to removing the price anomolies, and there are 31 variables, as we have added back in shared_bathrooms. Using favstat we can see that the mean has decreased slightly, however the SD has decreased by 3x. 
+####Here we see there are now 7250 observation due to removing the price anomolies, and there are 31 variables, as we have added back in shared_bathrooms. Using favstat we can see that the mean has decreased slightly, however the SD has decreased by 3x. 
 
-#EDA 2
+##EDA 2
 
 ```{r, echo=FALSE}
 skimr::skim(newlistings2)
 ```
 
-#Using this, we can see; there are 1 character variable, 5 logics and 25 numeric variables.
+####Using this, we can see; there are 1 character variable, 5 logics and 25 numeric variables.
 
-#EDA 3
+##EDA 3
 
 ```{r, echo=FALSE}
 #Plot 1
@@ -152,9 +151,9 @@ ggplot(newlistings2, aes(x = price, y = amenities, colour = Property_Type)) + #P
   theme_bw()
 ```
 
-# The above plot shows the price of the AirBnB against the amenities they offer, coloured by property type. From the graph it shows little correlation between price and amenities. We beleive this is the case because the price of the amenities are fairly low, such as hair dryers, heating, bed linen etc, therefore no matter if the price of the accomadation is low it is still faesible to afford the amenities. The plot does show that the majoirty of the properties have a price less than $200.
+#### The above plot shows the price of the AirBnB against the amenities they offer, coloured by property type. From the graph it shows little correlation between price and amenities. We beleive this is the case because the price of the amenities are fairly low, such as hair dryers, heating, bed linen etc, therefore no matter if the price of the accomadation is low it is still faesible to afford the amenities. The plot does show that the majoirty of the properties have a price less than $200.
 
-# However there is a correlation between price and private rooms. These are all clustered in the <£200 section with a few outliers, this could be due to the lack of desire to share a house with others and therefore it drives the price of the property down.
+#### However there is a correlation between price and private rooms. These are all clustered in the <£200 section with a few outliers, this could be due to the lack of desire to share a house with others and therefore it drives the price of the property down.
 
 ```{r, echo=FALSE}
 #Plot 2
@@ -168,7 +167,7 @@ ggplot(newlistings2, aes(x = price, y = amenities, colour = Property_Type)) + #P
   theme_bw()
 ```
 
-# This plot is the same as the above however we have decided to use log of price as it produces a more normal distrubution, it is here a lot clearer to see the shared rooms are the most affordable ones. We will continue therefore to use log price from now on.
+#### This plot is the same as the above however we have decided to use log of price as it produces a more normal distrubution, it is here a lot clearer to see the shared rooms are the most affordable ones. We will continue therefore to use log price from now on.
 
 ```{r, echo=FALSE}
 #Plot 3
@@ -193,7 +192,7 @@ ggplot(newlistings2, aes(x = price, alpha = 0.6)) + #Plotting a histogram of pri
   geom_vline(aes(xintercept = mean(price)),col='red',size=2, alpha = 0.6)
 ```
 
-#The above plots shows a histogram for the price of the properties one with logscale one without. It is clear from the first graph there is positively skewed distrubution, and by using the log scale it normalises it. This is better for regression models. In both plots we can use the mean line to see the mean price is around £115.
+####The above plots shows a histogram for the price of the properties one with logscale one without. It is clear from the first graph there is positively skewed distrubution, and by using the log scale it normalises it. This is better for regression models. In both plots we can use the mean line to see the mean price is around £115.
 
 ```{r, echo=FALSE}
 #Plot 4
@@ -207,10 +206,18 @@ ggplot(newlistings2, aes(x = review_scores_rating)) + #Plotting a density plot f
   theme_bw()
 ```
 
-#This plot shows a great negative skew to the 5* rating, i.e. the majority of ratings are 5*. As the ratings are high, before doing any analysis i could hypothesise that this may mean reviews don't have much bearing on price because, the majority of reviews are 5*, however not all the prices are high.
+####This plot shows a great negative skew to the 5* rating, i.e. the majority of ratings are 5*. As the ratings are high, before doing any analysis i could hypothesise that this may mean reviews don't have much bearing on price because, the majority of reviews are 5*, however not all the prices are high.
 
 ```{r, echo=FALSE}
 #Plot 5
+scatterplot <- newlistings2[-c(1:2, #creating a new scatter plot df of variables that the full linear model found to be the most statistically signifcant.
+                               4:7,
+                               11:12,
+                               14:15,
+                               17:21,
+                               22:25,
+                               29:30
+                               )]
 superhost <- scatterplot[c(1,5)] #removing na's from superhost variable
 superhost1 <- na.omit(superhost)
 
@@ -225,22 +232,15 @@ ggplot(superhost1, aes(x=price, y = host_is_superhost, fill = host_is_superhost)
   theme_bw()
 ```
 
-#The boxplot shows super host to log price, cleary the mean price for the superhosts are greater than that of those who aren't. I would suggest this is because these hosts are seen to be superior and therefore can charge more, especially if this correlates with having more amenities, better response time etc. Surprisngly however the most expensive property is for someone without a superhost, but the superhosts have a greater minimum price because they know they can charge more for the property. The IQR and range is smaller for superhosts, this could be because they know how much they can charge, compared to normal hosts who may have less experience with airbnb.
+####The boxplot shows super host to log price, cleary the mean price for the superhosts are greater than that of those who aren't. I would suggest this is because these hosts are seen to be superior and therefore can charge more, especially if this correlates with having more amenities, better response time etc. Surprisngly however the most expensive property is for someone without a superhost, but the superhosts have a greater minimum price because they know they can charge more for the property. The IQR and range is smaller for superhosts, this could be because they know how much they can charge, compared to normal hosts who may have less experience with airbnb.
 
 
 ```{r, echo=FALSE}
 #Plot 6 
-scatterplot <- newlistings2[-c(1:2, #creating a new scatter plot df of variables that the full linear model found to be the most statistically signifcant.
-                               4:7,
-                               11:12,
-                               14:15,
-                               17:21,
-                               22:25,
-                               29:30
-                               )]
+
 GGally::ggpairs(scatterplot) # Running GG pairs to check relationships between variables
 ```
 
-#Using ggpairs i can see the correlations between variables. The greatest correlation is number of bedrooms and number the property sleeps. This is expected as the more rooms the more the property can sleep. The 2nd highest correlation is between review value and review location, this must be because there nicer the location the greater the review. This is expected, better locations better reviews. Correlations between availability and reviews are negatively correlated slightly. This suggest the more availaibilty the worse the review, which makes sense. If the property is free more often this could be because it isn't the best property which would bring with it worse reviews. 
+####Using ggpairs i can see the correlations between variables. The greatest correlation is number of bedrooms and number the property sleeps. This is expected as the more rooms the more the property can sleep. The 2nd highest correlation is between review value and review location, this must be because there nicer the location the greater the review. This is expected, better locations better reviews. Correlations between availability and reviews are negatively correlated slightly. This suggest the more availaibilty the worse the review, which makes sense. If the property is free more often this could be because it isn't the best property which would bring with it worse reviews. 
 
-#Accomadates, bathrooms, bedrooms, price, availibility all have a positve skew, whilst reviews have a negative skew.
+####Accomadates, bathrooms, bedrooms, price, availibility all have a positve skew, whilst reviews have a negative skew.

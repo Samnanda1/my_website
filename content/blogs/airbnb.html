@@ -1,0 +1,1378 @@
+---
+categories:  
+- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
+- ""
+date: "2021-09-30"
+description: Risk-Return of DJIA stocks # the title that will show up once someone gets to this page
+draft: false
+#image: spices.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
+keywords: ""
+slug: airbnb # slug is the shorthand URL address... no spaces plz
+title: Risk-Return of DJIA stock
+---
+
+
+
+<pre><code>Rows: 12,540
+Columns: 74
+$ id                                           &lt;dbl&gt; 2078, 2843, 29059, 29061,…
+$ listing_url                                  &lt;chr&gt; &quot;https://www.airbnb.com/r…
+$ scrape_id                                    &lt;dbl&gt; 2.021091e+13, 2.021091e+1…
+$ last_scraped                                 &lt;date&gt; 2021-09-15, 2021-09-15, …
+$ name                                         &lt;chr&gt; &quot;Central comfy close to M…
+$ description                                  &lt;chr&gt; &quot;Centrally located in tre…
+$ neighborhood_overview                        &lt;chr&gt; &quot;Although my place is cen…
+$ picture_url                                  &lt;chr&gt; &quot;https://a0.muscache.com/…
+$ host_id                                      &lt;dbl&gt; 2277, 2319, 125031, 12503…
+$ host_url                                     &lt;chr&gt; &quot;https://www.airbnb.com/u…
+$ host_name                                    &lt;chr&gt; &quot;Nelia&quot;, &quot;Gail&quot;, &quot;Marylin…
+$ host_since                                   &lt;date&gt; 2008-08-19, 2008-08-19, …
+$ host_location                                &lt;chr&gt; &quot;Montreal, Québec, Canada…
+$ host_about                                   &lt;chr&gt; &quot;Honest, quiet and adhere…
+$ host_response_time                           &lt;chr&gt; &quot;within an hour&quot;, &quot;within…
+$ host_response_rate                           &lt;chr&gt; &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;…
+$ host_acceptance_rate                         &lt;chr&gt; &quot;100%&quot;, &quot;100%&quot;, &quot;94%&quot;, &quot;9…
+$ host_is_superhost                            &lt;lgl&gt; FALSE, TRUE, FALSE, FALSE…
+$ host_thumbnail_url                           &lt;chr&gt; &quot;https://a0.muscache.com/…
+$ host_picture_url                             &lt;chr&gt; &quot;https://a0.muscache.com/…
+$ host_neighbourhood                           &lt;chr&gt; &quot;Le Plateau&quot;, &quot;Little Bur…
+$ host_listings_count                          &lt;dbl&gt; 1, 6, 2, 2, 6, 1, 7, 3, 2…
+$ host_total_listings_count                    &lt;dbl&gt; 1, 6, 2, 2, 6, 1, 7, 3, 2…
+$ host_verifications                           &lt;chr&gt; &quot;[&#39;email&#39;, &#39;phone&#39;, &#39;revi…
+$ host_has_profile_pic                         &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, T…
+$ host_identity_verified                       &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, T…
+$ neighbourhood                                &lt;chr&gt; &quot;Montreal, Quebec, Canada…
+$ neighbourhood_cleansed                       &lt;chr&gt; &quot;Le Plateau-Mont-Royal&quot;, …
+$ neighbourhood_group_cleansed                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, N…
+$ latitude                                     &lt;dbl&gt; 45.52859, 45.48496, 45.51…
+$ longitude                                    &lt;dbl&gt; -73.58480, -73.58001, -73…
+$ property_type                                &lt;chr&gt; &quot;Private room in resident…
+$ room_type                                    &lt;chr&gt; &quot;Private room&quot;, &quot;Private …
+$ accommodates                                 &lt;dbl&gt; 2, 2, 4, 5, 1, 5, 2, 1, 7…
+$ bathrooms                                    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, N…
+$ bathrooms_text                               &lt;chr&gt; &quot;1 shared bath&quot;, &quot;1 share…
+$ bedrooms                                     &lt;dbl&gt; 1, 1, 1, 2, 1, 2, 1, 3, 4…
+$ beds                                         &lt;dbl&gt; 1, 1, 2, 2, 1, 3, 2, 4, 4…
+$ amenities                                    &lt;chr&gt; &quot;[\&quot;Heating\&quot;, \&quot;Hair dry…
+$ price                                        &lt;chr&gt; &quot;$39.00&quot;, &quot;$40.00&quot;, &quot;$123…
+$ minimum_nights                               &lt;dbl&gt; 2, 1, 2, 3, 2, 4, 5, 10, …
+$ maximum_nights                               &lt;dbl&gt; 7, 365, 60, 21, 365, 1125…
+$ minimum_minimum_nights                       &lt;dbl&gt; 2, 1, 2, 3, 2, 4, 5, 10, …
+$ maximum_minimum_nights                       &lt;dbl&gt; 2, 2, 2, 3, 2, 4, 5, 10, …
+$ minimum_maximum_nights                       &lt;dbl&gt; 7, 1125, 1125, 21, 1125, …
+$ maximum_maximum_nights                       &lt;dbl&gt; 7, 1125, 1125, 21, 1125, …
+$ minimum_nights_avg_ntm                       &lt;dbl&gt; 2.0, 1.0, 2.0, 3.0, 2.0, …
+$ maximum_nights_avg_ntm                       &lt;dbl&gt; 7, 1125, 1125, 21, 1125, …
+$ calendar_updated                             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, N…
+$ has_availability                             &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, T…
+$ availability_30                              &lt;dbl&gt; 0, 0, 4, 4, 0, 2, 0, 12, …
+$ availability_60                              &lt;dbl&gt; 0, 0, 34, 21, 0, 21, 0, 4…
+$ availability_90                              &lt;dbl&gt; 0, 0, 64, 51, 1, 51, 0, 7…
+$ availability_365                             &lt;dbl&gt; 3, 45, 328, 306, 276, 272…
+$ calendar_last_scraped                        &lt;date&gt; 2021-09-15, 2021-09-15, …
+$ number_of_reviews                            &lt;dbl&gt; 245, 152, 331, 79, 156, 4…
+$ number_of_reviews_ltm                        &lt;dbl&gt; 0, 9, 3, 12, 3, 0, 3, 0, …
+$ number_of_reviews_l30d                       &lt;dbl&gt; 0, 3, 0, 4, 1, 0, 1, 0, 0…
+$ first_review                                 &lt;date&gt; 2012-07-29, 2012-12-23, …
+$ last_review                                  &lt;date&gt; 2018-07-29, 2021-09-07, …
+$ review_scores_rating                         &lt;dbl&gt; 4.63, 4.40, 4.69, 4.61, 4…
+$ review_scores_accuracy                       &lt;dbl&gt; 4.84, 4.52, 4.82, 4.84, 4…
+$ review_scores_cleanliness                    &lt;dbl&gt; 4.53, 4.30, 4.70, 4.63, 4…
+$ review_scores_checkin                        &lt;dbl&gt; 4.90, 4.62, 4.80, 4.81, 4…
+$ review_scores_communication                  &lt;dbl&gt; 4.84, 4.74, 4.79, 4.75, 4…
+$ review_scores_location                       &lt;dbl&gt; 4.83, 4.71, 4.79, 4.85, 4…
+$ review_scores_value                          &lt;dbl&gt; 4.81, 4.64, 4.73, 4.66, 4…
+$ license                                      &lt;dbl&gt; NA, NA, NA, NA, NA, NA, N…
+$ instant_bookable                             &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE,…
+$ calculated_host_listings_count               &lt;dbl&gt; 1, 5, 2, 2, 5, 1, 7, 2, 2…
+$ calculated_host_listings_count_entire_homes  &lt;dbl&gt; 0, 2, 2, 2, 2, 1, 7, 0, 0…
+$ calculated_host_listings_count_private_rooms &lt;dbl&gt; 1, 3, 0, 0, 3, 0, 0, 2, 2…
+$ calculated_host_listings_count_shared_rooms  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ reviews_per_month                            &lt;dbl&gt; 2.20, 1.43, 2.83, 0.69, 1…</code></pre>
+<p>##Project</p>
+<p>####Initially glimpsing the data, there are 12540 observations of 74 variables, however not all of these will have an effect on price, such as the host_Url. Therefore we manually removed such varibales, along with filtering by minimum no of nights less than 4 and accomodates 2 or more people. We called this data set newlistings 2.</p>
+<pre><code>Rows: 7,400
+Columns: 30
+$ host_response_rate          &lt;chr&gt; &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;N…
+$ host_acceptance_rate        &lt;chr&gt; &quot;100%&quot;, &quot;100%&quot;, &quot;94%&quot;, &quot;94%&quot;, &quot;0%&quot;, &quot;N/A&quot;,…
+$ host_is_superhost           &lt;lgl&gt; FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, T…
+$ host_listings_count         &lt;dbl&gt; 1, 6, 2, 2, 1, 2, 1, 1, 1, 0, 7, 7, 1, 0, …
+$ host_verifications          &lt;chr&gt; &quot;[&#39;email&#39;, &#39;phone&#39;, &#39;reviews&#39;, &#39;manual_off…
+$ host_has_profile_pic        &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
+$ host_identity_verified      &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
+$ accommodates                &lt;dbl&gt; 2, 2, 4, 5, 5, 7, 4, 3, 2, 8, 2, 3, 4, 2, …
+$ bathrooms_text              &lt;chr&gt; &quot;1 shared bath&quot;, &quot;1 shared bath&quot;, &quot;1 bath&quot;…
+$ bedrooms                    &lt;dbl&gt; 1, 1, 1, 2, 2, 4, 1, 1, 1, 4, 1, 1, 2, NA,…
+$ beds                        &lt;dbl&gt; 1, 1, 2, 2, 3, 4, 2, 0, 1, 4, 0, 2, 2, 1, …
+$ amenities                   &lt;chr&gt; &quot;[\&quot;Heating\&quot;, \&quot;Hair dryer\&quot;, \&quot;Iron\&quot;, \…
+$ price                       &lt;dbl&gt; 39, 40, 123, 286, 140, 63, 75, 53, 150, 25…
+$ minimum_nights              &lt;dbl&gt; 2, 1, 2, 3, 4, 3, 3, 1, 3, 3, 3, 3, 3, 1, …
+$ maximum_nights              &lt;dbl&gt; 7, 365, 60, 21, 1125, 365, 31, 365, 730, 1…
+$ availability_30             &lt;dbl&gt; 0, 0, 4, 4, 2, 21, 2, 0, 0, 11, 0, 0, 23, …
+$ availability_60             &lt;dbl&gt; 0, 0, 34, 21, 21, 51, 5, 13, 0, 11, 0, 0, …
+$ number_of_reviews           &lt;dbl&gt; 245, 152, 331, 79, 4, 20, 152, 80, 0, 24, …
+$ number_of_reviews_ltm       &lt;dbl&gt; 0, 9, 3, 12, 0, 0, 31, 0, 0, 1, 6, 3, 0, 4…
+$ number_of_reviews_l30d      &lt;dbl&gt; 0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, …
+$ review_scores_rating        &lt;dbl&gt; 4.63, 4.40, 4.69, 4.61, 4.67, 4.47, 4.93, …
+$ review_scores_accuracy      &lt;dbl&gt; 4.84, 4.52, 4.82, 4.84, 4.67, 4.60, 4.93, …
+$ review_scores_cleanliness   &lt;dbl&gt; 4.53, 4.30, 4.70, 4.63, 5.00, 4.10, 4.91, …
+$ review_scores_checkin       &lt;dbl&gt; 4.90, 4.62, 4.80, 4.81, 5.00, 4.95, 4.96, …
+$ review_scores_communication &lt;dbl&gt; 4.84, 4.74, 4.79, 4.75, 5.00, 4.80, 4.97, …
+$ review_scores_location      &lt;dbl&gt; 4.83, 4.71, 4.79, 4.85, 4.00, 4.40, 4.78, …
+$ review_scores_value         &lt;dbl&gt; 4.81, 4.64, 4.73, 4.66, 4.67, 4.55, 4.92, …
+$ instant_bookable            &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRU…
+$ reviews_per_month           &lt;dbl&gt; 2.20, 1.43, 2.83, 0.69, 0.03, 0.51, 1.28, …
+$ Property_Type               &lt;chr&gt; &quot;Other&quot;, &quot;Private room in rental unit&quot;, &quot;E…</code></pre>
+<div id="a-glimpse-of-data-newlistings1-reveals-we-now-have-7400-observations-with-30-variables-this-is-much-more-accessible-date-however-we-noticed-that-there-are-a-few-price-anomolies.-therefore-using-a-summary-function-of-price-we-used-2-standard-deviations-from-the-mean-to-remove-these-anomolous-prices-in-a-new-df-called-newlistings-2.-along-with-this-we-mutated-some-of-the-variables-for-example-converting-host_verifications-to-numbers-and-making-host-acceptance-rate-to-percentage." class="section level4">
+<h4>A glimpse of data newlistings1, reveals we now have 7400 observations with 30 variables, this is much more accessible date, however we noticed that there are a few price anomolies. Therefore using a summary function of price, we used 2 standard deviations from the mean to remove these anomolous prices in a new df called newlistings 2. Along with this we mutated some of the variables for example, converting host_verifications to numbers and making host acceptance rate to percentage.</h4>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
+<col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">AV</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SD</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">137</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">231</td></tr>
+</table>
+
+<p>##Now we can start to use EDA on this new dataframe, Step 1, Glimpsing the data:</p>
+<pre><code>Rows: 7,250
+Columns: 31
+$ host_response_rate          &lt;dbl&gt; 1.00, 1.00, 1.00, 1.00, 1.00, NA, 1.00, NA…
+$ host_acceptance_rate        &lt;dbl&gt; 1.00, 1.00, 0.94, 0.94, 0.00, NA, 1.00, 0.…
+$ host_is_superhost           &lt;lgl&gt; FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, T…
+$ host_listings_count         &lt;dbl&gt; 1, 6, 2, 2, 1, 2, 1, 1, 1, 0, 7, 7, 1, 0, …
+$ host_verifications          &lt;dbl&gt; 6, 7, 8, 8, 5, 5, 8, 5, 3, 4, 5, 5, 4, 6, …
+$ host_has_profile_pic        &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
+$ host_identity_verified      &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
+$ accommodates                &lt;dbl&gt; 2, 2, 4, 5, 5, 7, 4, 3, 2, 8, 2, 3, 4, 2, …
+$ bathrooms_text              &lt;dbl&gt; 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, NA…
+$ bedrooms                    &lt;dbl&gt; 1, 1, 1, 2, 2, 4, 1, 1, 1, 4, 1, 1, 2, NA,…
+$ beds                        &lt;dbl&gt; 1, 1, 2, 2, 3, 4, 2, 0, 1, 4, 0, 2, 2, 1, …
+$ amenities                   &lt;dbl&gt; 14, 47, 32, 38, 23, 28, 52, 40, 2, 40, 22,…
+$ price                       &lt;dbl&gt; 39, 40, 123, 286, 140, 63, 75, 53, 150, 25…
+$ minimum_nights              &lt;dbl&gt; 2, 1, 2, 3, 4, 3, 3, 1, 3, 3, 3, 3, 3, 1, …
+$ maximum_nights              &lt;dbl&gt; 7, 365, 60, 21, 1125, 365, 31, 365, 730, 1…
+$ availability_30             &lt;dbl&gt; 0, 0, 4, 4, 2, 21, 2, 0, 0, 11, 0, 0, 23, …
+$ availability_60             &lt;dbl&gt; 0, 0, 34, 21, 21, 51, 5, 13, 0, 11, 0, 0, …
+$ number_of_reviews           &lt;dbl&gt; 245, 152, 331, 79, 4, 20, 152, 80, 0, 24, …
+$ number_of_reviews_ltm       &lt;dbl&gt; 0, 9, 3, 12, 0, 0, 31, 0, 0, 1, 6, 3, 0, 4…
+$ number_of_reviews_l30d      &lt;dbl&gt; 0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, …
+$ review_scores_rating        &lt;dbl&gt; 4.63, 4.40, 4.69, 4.61, 4.67, 4.47, 4.93, …
+$ review_scores_accuracy      &lt;dbl&gt; 4.84, 4.52, 4.82, 4.84, 4.67, 4.60, 4.93, …
+$ review_scores_cleanliness   &lt;dbl&gt; 4.53, 4.30, 4.70, 4.63, 5.00, 4.10, 4.91, …
+$ review_scores_checkin       &lt;dbl&gt; 4.90, 4.62, 4.80, 4.81, 5.00, 4.95, 4.96, …
+$ review_scores_communication &lt;dbl&gt; 4.84, 4.74, 4.79, 4.75, 5.00, 4.80, 4.97, …
+$ review_scores_location      &lt;dbl&gt; 4.83, 4.71, 4.79, 4.85, 4.00, 4.40, 4.78, …
+$ review_scores_value         &lt;dbl&gt; 4.81, 4.64, 4.73, 4.66, 4.67, 4.55, 4.92, …
+$ instant_bookable            &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRU…
+$ reviews_per_month           &lt;dbl&gt; 2.20, 1.43, 2.83, 0.69, 0.03, 0.51, 1.28, …
+$ Property_Type               &lt;chr&gt; &quot;Other&quot;, &quot;Private room in rental unit&quot;, &quot;E…
+$ shared_bathroom             &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FAL…</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
+<col><col><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">min</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">median</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q3</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">max</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">n</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">missing</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">59</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">94</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">143</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">597</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">115</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">86</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">7250</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
+</table>
+
+<p>####Here we see there are now 7250 observation due to removing the price anomolies, and there are 31 variables, as we have added back in shared_bathrooms. Using favstat we can see that the mean has decreased slightly, however the SD has decreased by 3x.</p>
+<p>##EDA 2</p>
+<table style='width: auto;'
+        class='table table-condensed'>
+<caption>
+<span id="tab:unnamed-chunk-5">Table 1: </span>Data summary
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Name
+</td>
+<td style="text-align:left;">
+newlistings2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of rows
+</td>
+<td style="text-align:left;">
+7250
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of columns
+</td>
+<td style="text-align:left;">
+31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+_______________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Column type frequency:
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+character
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+logical
+</td>
+<td style="text-align:left;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+________________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Group variables
+</td>
+<td style="text-align:left;">
+None
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+min
+</th>
+<th style="text-align:right;">
+max
+</th>
+<th style="text-align:right;">
+empty
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+<th style="text-align:right;">
+whitespace
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Property_Type
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: logical</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:left;">
+count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+host_is_superhost
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:left;">
+FAL: 5934, TRU: 1314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+host_has_profile_pic
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:left;">
+TRU: 7208, FAL: 40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+host_identity_verified
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+<td style="text-align:left;">
+TRU: 5801, FAL: 1447
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+instant_bookable
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:left;">
+FAL: 4083, TRU: 3167
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+shared_bathroom
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+<td style="text-align:left;">
+FAL: 5890, TRU: 1360
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+p0
+</th>
+<th style="text-align:right;">
+p25
+</th>
+<th style="text-align:right;">
+p50
+</th>
+<th style="text-align:right;">
+p75
+</th>
+<th style="text-align:right;">
+p100
+</th>
+<th style="text-align:left;">
+hist
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+host_response_rate
+</td>
+<td style="text-align:right;">
+3505
+</td>
+<td style="text-align:right;">
+0.52
+</td>
+<td style="text-align:right;">
+0.89
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+host_acceptance_rate
+</td>
+<td style="text-align:right;">
+3272
+</td>
+<td style="text-align:right;">
+0.55
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+host_listings_count
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+8.04
+</td>
+<td style="text-align:right;">
+21.28
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.00
+</td>
+<td style="text-align:right;">
+341
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+host_verifications
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+5.14
+</td>
+<td style="text-align:right;">
+2.24
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+6.00
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+▆▅▇▃▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+accommodates
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+3.54
+</td>
+<td style="text-align:right;">
+2.15
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+4.00
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+▇▂▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bathrooms_text
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.42
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bedrooms
+</td>
+<td style="text-align:right;">
+740
+</td>
+<td style="text-align:right;">
+0.90
+</td>
+<td style="text-align:right;">
+1.50
+</td>
+<td style="text-align:right;">
+0.86
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+beds
+</td>
+<td style="text-align:right;">
+79
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+amenities
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+24.04
+</td>
+<td style="text-align:right;">
+11.66
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+15.00
+</td>
+<td style="text-align:right;">
+22.00
+</td>
+<td style="text-align:right;">
+32.00
+</td>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+▆▇▅▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+price
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+115.03
+</td>
+<td style="text-align:right;">
+86.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+59.00
+</td>
+<td style="text-align:right;">
+94.00
+</td>
+<td style="text-align:right;">
+142.75
+</td>
+<td style="text-align:right;">
+597
+</td>
+<td style="text-align:left;">
+▇▃▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+minimum_nights
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.80
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+▇▇▁▂▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+maximum_nights
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+676.77
+</td>
+<td style="text-align:right;">
+513.19
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+31.00
+</td>
+<td style="text-align:right;">
+1125.00
+</td>
+<td style="text-align:right;">
+1125.00
+</td>
+<td style="text-align:right;">
+3000
+</td>
+<td style="text-align:left;">
+▆▇▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+availability_30
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+5.39
+</td>
+<td style="text-align:right;">
+8.67
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+availability_60
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+14.82
+</td>
+<td style="text-align:right;">
+20.26
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+32.00
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+▇▁▁▂▂
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+number_of_reviews
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+25.47
+</td>
+<td style="text-align:right;">
+52.05
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+6.00
+</td>
+<td style="text-align:right;">
+24.00
+</td>
+<td style="text-align:right;">
+611
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+number_of_reviews_ltm
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+5.10
+</td>
+<td style="text-align:right;">
+11.40
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+130
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+number_of_reviews_l30d
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+1.96
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+review_scores_rating
+</td>
+<td style="text-align:right;">
+1232
+</td>
+<td style="text-align:right;">
+0.83
+</td>
+<td style="text-align:right;">
+4.54
+</td>
+<td style="text-align:right;">
+0.87
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+4.50
+</td>
+<td style="text-align:right;">
+4.79
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+review_scores_accuracy
+</td>
+<td style="text-align:right;">
+1375
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+4.73
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.69
+</td>
+<td style="text-align:right;">
+4.88
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+review_scores_cleanliness
+</td>
+<td style="text-align:right;">
+1375
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+4.60
+</td>
+<td style="text-align:right;">
+0.58
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.50
+</td>
+<td style="text-align:right;">
+4.80
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+review_scores_checkin
+</td>
+<td style="text-align:right;">
+1379
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+4.81
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.80
+</td>
+<td style="text-align:right;">
+4.95
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+review_scores_communication
+</td>
+<td style="text-align:right;">
+1376
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+4.79
+</td>
+<td style="text-align:right;">
+0.46
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.79
+</td>
+<td style="text-align:right;">
+4.95
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+review_scores_location
+</td>
+<td style="text-align:right;">
+1381
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+4.78
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.71
+</td>
+<td style="text-align:right;">
+4.90
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+review_scores_value
+</td>
+<td style="text-align:right;">
+1381
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+4.66
+</td>
+<td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+4.57
+</td>
+<td style="text-align:right;">
+4.79
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+reviews_per_month
+</td>
+<td style="text-align:right;">
+1232
+</td>
+<td style="text-align:right;">
+0.83
+</td>
+<td style="text-align:right;">
+1.51
+</td>
+<td style="text-align:right;">
+2.46
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+</tbody>
+</table>
+<p>####Using this, we can see; there are 1 character variable, 5 logics and 25 numeric variables.</p>
+<p>##EDA 3</p>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
+</div>
+<div id="the-above-plot-shows-the-price-of-the-airbnb-against-the-amenities-they-offer-coloured-by-property-type.-from-the-graph-it-shows-little-correlation-between-price-and-amenities.-we-beleive-this-is-the-case-because-the-price-of-the-amenities-are-fairly-low-such-as-hair-dryers-heating-bed-linen-etc-therefore-no-matter-if-the-price-of-the-accomadation-is-low-it-is-still-faesible-to-afford-the-amenities.-the-plot-does-show-that-the-majoirty-of-the-properties-have-a-price-less-than-200." class="section level4">
+<h4>The above plot shows the price of the AirBnB against the amenities they offer, coloured by property type. From the graph it shows little correlation between price and amenities. We beleive this is the case because the price of the amenities are fairly low, such as hair dryers, heating, bed linen etc, therefore no matter if the price of the accomadation is low it is still faesible to afford the amenities. The plot does show that the majoirty of the properties have a price less than $200.</h4>
+</div>
+<div id="however-there-is-a-correlation-between-price-and-private-rooms.-these-are-all-clustered-in-the-200-section-with-a-few-outliers-this-could-be-due-to-the-lack-of-desire-to-share-a-house-with-others-and-therefore-it-drives-the-price-of-the-property-down." class="section level4">
+<h4>However there is a correlation between price and private rooms. These are all clustered in the &lt;£200 section with a few outliers, this could be due to the lack of desire to share a house with others and therefore it drives the price of the property down.</h4>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
+</div>
+<div id="this-plot-is-the-same-as-the-above-however-we-have-decided-to-use-log-of-price-as-it-produces-a-more-normal-distrubution-it-is-here-a-lot-clearer-to-see-the-shared-rooms-are-the-most-affordable-ones.-we-will-continue-therefore-to-use-log-price-from-now-on." class="section level4">
+<h4>This plot is the same as the above however we have decided to use log of price as it produces a more normal distrubution, it is here a lot clearer to see the shared rooms are the most affordable ones. We will continue therefore to use log price from now on.</h4>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-8-1.png" width="2100" /><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-8-2.png" width="2100" /></p>
+<p>####The above plots shows a histogram for the price of the properties one with logscale one without. It is clear from the first graph there is positively skewed distrubution, and by using the log scale it normalises it. This is better for regression models. In both plots we can use the mean line to see the mean price is around £115.</p>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-9-1.png" width="2100" /></p>
+<p>####This plot shows a great negative skew to the 5* rating, i.e. the majority of ratings are 5<em>. As the ratings are high, before doing any analysis i could hypothesise that this may mean reviews don’t have much bearing on price because, the majority of reviews are 5</em>, however not all the prices are high.</p>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-10-1.png" width="2100" /></p>
+<p>####The boxplot shows super host to log price, cleary the mean price for the superhosts are greater than that of those who aren’t. I would suggest this is because these hosts are seen to be superior and therefore can charge more, especially if this correlates with having more amenities, better response time etc. Surprisngly however the most expensive property is for someone without a superhost, but the superhosts have a greater minimum price because they know they can charge more for the property. The IQR and range is smaller for superhosts, this could be because they know how much they can charge, compared to normal hosts who may have less experience with airbnb.</p>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-11-1.png" width="2100" /></p>
+<p>####Using ggpairs i can see the correlations between variables. The greatest correlation is number of bedrooms and number the property sleeps. This is expected as the more rooms the more the property can sleep. The 2nd highest correlation is between review value and review location, this must be because there nicer the location the greater the review. This is expected, better locations better reviews. Correlations between availability and reviews are negatively correlated slightly. This suggest the more availaibilty the worse the review, which makes sense. If the property is free more often this could be because it isn’t the best property which would bring with it worse reviews.</p>
+<p>####Accomadates, bathrooms, bedrooms, price, availibility all have a positve skew, whilst reviews have a negative skew.</p>
+</div>
