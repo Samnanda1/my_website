@@ -3,12 +3,12 @@ categories:
 - ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
 - ""
 date: "2021-09-30"
-description: Risk-Return of DJIA stocks # the title that will show up once someone gets to this page
+description: Project on Airbnb's in Montreal # the title that will show up once someone gets to this page
 draft: false
 #image: spices.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
 keywords: ""
 slug: airbnb # slug is the shorthand URL address... no spaces plz
-title: Risk-Return of DJIA stock
+title: Project on Airbnb's in Montreal
 ---
 
 ```{r setup, include=FALSE}
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE,
 ```
 
 
-```{r load-libraries, echo=FALSE}
+```{r load-libraries, include=FALSE}
 
 library(tidyverse) # the usual stuff: dplyr, readr, and other goodies
 library(lubridate) # to handle dates
@@ -52,10 +52,11 @@ listings <- vroom("http://data.insideairbnb.com/canada/qc/montreal/2021-09-14/da
 ```
 
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 glimpse(listings)
 ```
-##Project
+<h1> Project <h1>
+
 
 ####Initially glimpsing the data, there are 12540 observations of 74 variables, however not all of these will have an effect on price, such as the host_Url. Therefore we manually removed such varibales, along with filtering by minimum no of nights less than 4 and accomodates 2 or more people. We called this data set newlistings 2.
 
