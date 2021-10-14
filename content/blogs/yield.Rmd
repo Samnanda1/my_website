@@ -222,7 +222,4 @@ Shaded areas correspond to recessions"
 ```
 
 
-```{r}
-blogdown::serve_site()
-```
 

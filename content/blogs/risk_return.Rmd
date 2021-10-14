@@ -189,8 +189,4 @@ by_year_monthly %>%
 
 ```
 
-```{r}
-
-blogdown::serve_site()
-```
 
