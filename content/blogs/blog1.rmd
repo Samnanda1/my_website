@@ -11,3 +11,218 @@ slug: blog1
 title: Coding
 ---
 
+```{r load-libraries, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(mosaic)
+library(ggthemes)
+library(GGally)
+library(readxl)
+library(here)
+library(skimr)
+library(janitor)
+library(broom)
+library(tidyquant)
+library(infer)
+library(openintro)
+library(scales)
+```
+
+```{r yield_curve_parable.jpg, echo=FALSE, out.width="100%"}
+knitr::include_graphics(here::here("images", "yield_curve_parable.jpg"), error = FALSE)
+```
+
+
+In our case we will look at US data and use the [FRED database](https://fred.stlouisfed.org/) to download historical yield curve rates, and plot the yield curves since 1999 to see when the yield curves flatten. If you want to know more, a very nice article that explains the [yield curve is and its inversion can be found here](https://fredblog.stlouisfed.org/2018/10/the-data-behind-the-fear-of-yield-curve-inversions/). At the end of this challenge you should produce this chart
+
+```{r yield_curve_challenge, echo=FALSE, out.width="100%"}
+knitr::include_graphics(here::here("images", "yield_curve_challenge.png"), error = FALSE)
+```
+
+
+First, we will load the yield curve data file that contains data on the yield curve since 1960-01-01
+
+```{r download_historical_yield_curve, warning=FALSE}
+
+yield_curve <- read_csv(here::here("data", "yield_curve.csv"))
+
+glimpse(yield_curve)
+```
+
+Our dataframe `yield_curve` has five columns (variables):
+
+- `date`: already a date object
+- `series_id`: the FRED database ticker symbol
+- `value`: the actual yield on that date
+- `maturity`: a short hand for the maturity of the bond
+- `duration`: the duration, written out in all its glory!
+
+
+## Plotting the yield curve
+
+This may seem long but it should be easy to produce the following three plots
+
+### Yields on US rates by duration since 1960
+
+```{r}
+x <- data.frame("maturity" = c("3m","6m","1y","2y","3y","5y","7y","10y","20y","30y"), "number" = c(1,2,3,4,5,6,7,8,9,10))
+z <- full_join(x,yield_curve, by = "maturity") %>%
+  mutate(year = year(date), month = month(date))
+
+```
+
+
+```{r, fig.width=12, fig.height=10}
+ggplot(yield_curve, y = value, x = date) + 
+  geom_line(aes(color = duration, x = date, y = value)) +
+  facet_wrap(~factor(duration, levels=c('3-Month Treasury Bill','6-Month Treasury Bill','1-Year Treasury Rate','2-Year Treasury Rate', '3-Year Treasury Rate', '5-Year Treasury Rate', '7-Year Treasury Rate', '10-Year Treasury Rate', '20-Year Treasury Rate', '30-Year Treasury Rate')), ncol = 2, nrow = 5) +
+  theme_bw() +
+  labs(title = "Yields on U.S. Treasury Rates since 1960",
+       x = "", 
+       y = "%",
+       caption = "Source: St. Louis Federal Reserve Economic Database (FRED)") +
+  theme(legend.position = "none")
+
+```
+
+
+```{r yield_curve_1, echo=FALSE, out.width="100%"}
+knitr::include_graphics(here::here("images", "yield_curve1.png"), error = FALSE)
+```
+
+### Monthly yields on US rates by duration since 1999 on a year-by-year basis
+
+```{r, fig.width=12.5, fig.height=9}
+
+z %>%
+  filter(year >= 1999) %>%
+ggplot(aes(x = fct_reorder(maturity, number), y = value, color = year, group = month)) +
+  geom_line() +
+  facet_wrap(~year, ncol = 4, nrow = 6) +
+  labs(title = "US Yield Curve",
+       x = "Maturity", 
+       y = "Yield (%)",
+       caption = "Source: St. Louis Federal Reserve Economic Database (FRED)") +
+  theme_bw() +
+  scale_color_gradientn(colours = rainbow(12)) +
+  theme(legend.position = "none")
+
+```
+
+```{r yield_curve_2, echo=FALSE, out.width="100%"}
+knitr::include_graphics(here::here("images", "yield_curve2.png"), error = FALSE)
+```
+
+### 3-month and 10-year yields since 1999
+
+```{r, fig.width=12.5, fig.height=10}
+
+z3m <- z %>%
+  filter(duration == "3-Month Treasury Bill")
+
+z10y <- z %>%
+  filter(duration == "10-Year Treasury Rate")
+
+z3m10y <- rbind(z3m, z10y) %>%
+  filter(year >= 1999)
+
+ggplot(z3m10y, aes(x=date, y=value, group = duration)) +
+  geom_line(aes(color = duration)) +
+  theme_bw() +
+  scale_color_manual(values=c("#3fcfd2", "#f99891")) +
+  labs(title = "Yields on 3-month and 10-year US Treasury rates since 1999",
+       x = "", 
+       y = "%",
+       caption = "Source: St. Louis Federal Reserve Economic Database (FRED)") +
+  theme(legend.title = element_blank()) 
+
+```
+
+
+```{r yield_curve_3, echo=FALSE, out.width="100%"}
+knitr::include_graphics(here::here("images", "yield_curve3.png"), error = FALSE)
+```
+
+
+According to [Wikipedia's list of recession in the United States](https://en.wikipedia.org/wiki/List_of_recessions_in_the_United_States), since 1999 there have been two recession in the US: between Mar 2001–Nov 2001 and between Dec 2007–June 2009. Does the yield curve seem to flatten before these recessions? Can a yield curve flattening really mean a recession is coming in the US? Since 1999, when did short-term (3 months) yield more than longer term (10 years) debt?
+
+
+
+Besides calculating the spread (10year - 3months), there are a few things we need to do to produce our final plot
+
+1. Setup data for US recessions 
+1. Superimpose recessions as the grey areas in our plot
+1. Plot the spread between 30 years and 3 months as a blue/red ribbon, based on whether the spread is positive (blue) or negative(red)
+
+
+- For the first, the code below creates a dataframe with all US recessions since 1946
+
+```{r setup_US-recessions, warning=FALSE}
+
+# get US recession dates after 1946 from Wikipedia 
+# https://en.wikipedia.org/wiki/List_of_recessions_in_the_United_States
+
+recessions <- tibble(
+  from = c("1948-11-01", "1953-07-01", "1957-08-01", "1960-04-01", "1969-12-01", "1973-11-01", "1980-01-01","1981-07-01", "1990-07-01", "2001-03-01", "2007-12-01","2020-02-01"),  
+  to = c("1949-10-01", "1954-05-01", "1958-04-01", "1961-02-01", "1970-11-01", "1975-03-01", "1980-07-01", "1982-11-01", "1991-03-01", "2001-11-01", "2009-06-01", "2020-04-30") 
+  )  %>% 
+  mutate(From = ymd(from), 
+         To=ymd(to),
+         duration_days = To-From)
+
+
+```
+
+- To add the grey shaded areas corresponding to recessions, we use `geom_rect()`
+- to colour the ribbons blue/red we must see whether the spread is positive or negative and then use `geom_ribbon()`. You should be familiar with this from last week's homework on the excess weekly/monthly rentals of Santander Bikes in London.
+
+```{r, fig.width=14}
+
+z3mf <- z3m %>%
+  select(date,
+         value)
+
+z10yf <- z10y %>%
+  select(date,
+         value)
+
+z3m10yi <- inner_join(z3mf, z10yf, by = "date") %>%
+  mutate(delta = value.y - value.x)
+
+z3m10yf <- z3m10yi %>%
+  select(date,
+         delta) %>%
+  mutate(sign = ifelse(delta > 0, "positive", "negative"))
+
+recessions60 <- filter(recessions, year(from)>1959)
+
+ggplot(z3m10yf) +
+  geom_line(data = z3m10yf, aes(x = date, y = delta)) +
+  geom_area(data = z3m10yf,
+            aes(x = (date), y = ifelse(delta < 0, delta, 0)),
+            fill =
+              "#eab5b7") +
+  geom_area(data = z3m10yf,
+            aes(x = (date), y = ifelse(delta > 0, delta, 0)),
+            fill =
+              "#abc7e6")+
+  geom_rect(data = recessions60, aes(xmin = From, xmax = To), ymin = -Inf, ymax = Inf, alpha = 0.3) +
+  labs(
+    x = "",
+    y = "Difference (10 year-3 month) yield in %",
+    caption = "Source: FRED Federal Reserve Bank of St Louis",
+    title = "Yield Curve Inversion: 10-year minus 3-month U.S. Treasury rates",
+    subtitle = "Difference in % points monthly averages.
+Shaded areas correspond to recessions"
+  ) +
+  theme_bw() +
+  theme(panel.border = element_blank(), axis.ticks = element_blank()) +
+  scale_x_date(date_breaks = "2 years", labels= date_format("%Y"), limits = c(as.Date("1960-12-01"), as.Date("2021-01-01")))
+
+
+```
+
+
+```{r}
+blogdown::serve_site()
+```
+
