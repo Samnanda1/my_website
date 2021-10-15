@@ -203,7 +203,7 @@ ggplot(newlistings2, aes(x = price, alpha = 0.6)) + #Plotting a histogram of pri
   labs (#Axis Titles and Labels
     x = "Price",
     y = "Frequency Density") +
-  ggtitle("Histogram to Show Log Price") +
+  ggtitle("Histogram to Show Price") +
   theme_bw() +
   geom_vline(aes(xintercept = mean(price)),col='red',size=2, alpha = 0.6)
 
