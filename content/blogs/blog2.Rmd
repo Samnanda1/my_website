@@ -16,7 +16,9 @@ title: Education
 
 <h4> As everyone knows, it's impossible to fit a life story into a one page CV. Therefore using my website, it allows me to elaborate further. Here is my CV, please continue reading for an in depth review. <h4>
 
+```{r, echo=FALSE}
 knitr::include_graphics("/img/cv.jpeg",error =FALSE)
+```
 
 <h4> Running through my life chronologically from when i started high school, my journey started when i was 11 years old and followed in my older brothers footsteps by going to St Ambrose College. <h4>
 

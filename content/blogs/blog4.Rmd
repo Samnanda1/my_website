@@ -19,11 +19,15 @@ title: Charity Work
 <h4> In 2016 I volunteered with the Leadership at Sea Charity, for one leg of the Tall Ship race. I sailed on board Tenacious, the largest wooden tall ship of her kind, it is designed and built to be fully accessible for people with disabilities. I joined as part of the permanent crew for the week to help with the sailing of the ship and give those less fortunate the opportunity to sail from Lisbon to Cadiz. <h4> 
 
 <h3> Tenacious <h3>  
+```{r, echo=FALSE}
 knitr::include_graphics("/img/IMG_0565.JPG",error =FALSE)
+```
 
 <h4> It was an incredible opportunity to meet such inspirational people, who had terminal illnesses, but had the courage and determination to undergo a challenging task for anyone, let alone someone in a wheelchair. I had the pleasure of hoisting a friend in a wheelchair up 27 meters to the top of the mast. Giving him the opportunity to do this was inspirational for me and the experience taught me the value of communication, teamwork, leadership and the importance of never prejudging people. <h4>
 
+```{r, echo=FALSE}
 knitr::include_graphics("/img/IMG_0579.JPG",error =FALSE)
+```
 
 <h4> Following this in 2018, as Headboy I organised a charity mission to our sister school in Sierra Leone. I gathered a team of 8 and collectively we raised £20,000 through sponsored events such as the 3 peaks challenge and organising auctions. <h4>
 
@@ -31,7 +35,9 @@ knitr::include_graphics("/img/IMG_0579.JPG",error =FALSE)
 
 <h4> In February, the team and I, flew out to Sierra Leone, to help build the bore-hole and teach lessons to the children of the school. <h4>
 
+```{r, echo=FALSE}
 knitr::include_graphics("/img/thumb_DSCN9403_1024.jpg",error =FALSE)
+```
 
 <h4> Again this was a humbling experience on many levels, the ability to interact with the children and form connections despite the obvious language barrier was a surprise to me. Not only this but how generous, warm and kind the children were, given they had there lives torn apart by the virus. <h4>
 
