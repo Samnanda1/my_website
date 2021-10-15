@@ -3,18 +3,172 @@ categories:
 - ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
 - ""
 date: "2021-09-30"
-description: Project on Airbnb's in Montreal # the title that will show up once someone gets to this page
+description: Coding Projects from Univeristy and LBS # the title that will show up once someone gets to this page
 draft: false
 #image: spices.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
 keywords: ""
 slug: airbnb # slug is the shorthand URL address... no spaces plz
-title: Project on Airbnb's in Montreal
+title: Coding Projects
 ---
 
 
 
 <h2>
 Welcome to the sixth tile of my website;
+<h2>
+<h2>
+Project on Covid 19 and Critcare Data
+<h2>
+<h3>
+Summary
+<h3>
+<h3>
+Abstract and Background
+<h3>
+<h4>
+Covid-19 was a virus first identified in China in 2019. This virus has been transmitted around the world and categorised as a pandemic by the World Health Organisation. The virus has led to over 3 million deaths worldwide to date.
+Patients with the most severe effects of Covid-19 appear to have a high morbidity and the following report is an analysis of 600 Covid-19 patients entering Intensive Care / Critical Care Units (Critcare), primarily concerned with the survival probabilities of these patients after 30 days.
+<h4>
+<h4>
+For each patient entering critical care, the time in days since they entered critical care was recorded and given an indicator of death, or they were censored out of the study. Subsequently eight more variables regarding the patient’s prior health were noted. These variables include age, gender, body mass index, comorbidities, the use of invasive ventilation within 24 hours, prior dependency, deprivation index of postcode and their Apache II Risk Score*.
+<h4>
+<h3>
+Method and Initial Findings
+<h3>
+<h4>
+I have used a number of methods including Kaplan Meier Plot, Cox Proportional Hazard Model, Prognostic Index, Schoenfeld Residuals and the Cook’s Influence Model. These have all been modelled using R.
+<h4>
+<h4>
+The initial analysis of the data would suggest that the patients age, BMI, comorbidities, deprivation and their Apache II risk score are all factors that decrease the probability of survival. These are factors that decrease general health, which in turn increases the risk from viruses such as Corona Virus.
+<h4>
+<h3>
+Introduction
+<h3>
+<h4>
+Critcare Data 093 is a subset of 600 patients from a larger set of patient data of people who entered critical care after contracting COVID-19.
+<h4>
+<h4>
+For each patient entering Critcare the number of days since entering Critcare was recorded together with Cens and the variables :
+<h4>
+<h4>
+Cens : Indicator of death (1) or Censoring (0) Censored out of the study Variables:
+<h4>
+<h4>
+-Age
+<h4>
+<h4>
+-Gender
+<h4>
+<h4>
+-BMI: Body Mass Index
+<h4>
+<h4>
+-Apache: Apache II Risk Score from patient characteristics and biomarkers
+<h4>
+<h4>
+-Comor: Comorbidities
+<h4>
+<h4>
+-Invent: Invasive ventilation
+<h4>
+<h4>
+-Depend: Prior Dependency
+<h4>
+<h4>
+-Depriv: Deprivation Postcode
+<h4>
+<h3>
+Data Overview
+<h3>
+<h4>
+The mean time spent in critical care was 14.42 days, with the majority of patients being censored out rather than dying. Most patients were male with a BMI of 30.93. There were few patients with comorbidities, however over half needed ventilation and 10% had prior dependencies. Finally, the majority tended to be from a more deprived postcode and the average Apache score was 28.97.
+<h4>
+<h4>
+This data has been used to produce a comprehensive survival analysis of patients entering critical care. The 2 Kaplan Meier Plots below show survival against time for the Critcare data. As you can see from the left-hand plot, the 30-day survival probability is 0.525, i.e., at 30 days there is a 52.5% chance of survival. The right-hand plot shows the 95% confidence interval, which for the 30-day survival probability is (0.478, 0.578). This can be interpreted as 95% of the time your chance of surviving 30 days in critical care is between 47.8% and 57.8%.
+<h4>
+<p><img src="/img/sam.jpg" width="50%" style="display: block; margin: auto;" /><img src="/img/sam1.jpeg" width="50%" style="display: block; margin: auto;" /></p>
+<h3>
+Dependency Analysis
+<h3>
+<h4>
+61 people out of the 600 patients had prior dependencies so a comparative study of the survival probability between those with and without prior dependencies was undertaken, whilst keeping the other variables the same. The plot below clearly shows people with prior dependencies have a lot lower chance of survival. After 21 days however, there survival probability remains at 16.4%, in comparison to those without prior dependencies the survival probability continues to decrease for the entirety of the 30 days. The 21-day survival rate of those without dependencies is 64.2%, comparing this to those with dependencies, means they have just under a 50% greater chance of survival.
+Initial observations indicate that for the first 2/3 days the survival probability for those with and without prior dependencies is similar at &gt;80%, however at day 4 the survival probability drops by 20% for those with prior dependencies unlike the drop of 5% for those without. The 95% confidence interval (CI) is much more varied for those with prior dependencies, meaning there is a greater fluctuation in the 30-day survival probability at (8.8%,30.5%) in comparison to (51.7%,62.50%). This greater fluctuation however may be down to the number of data points, 61 compared to 539.
+<h4>
+<p><img src="/img/sam2.jpeg" width="50%" style="display: block; margin: auto;" /></p>
+<h3>
+Ventilation Analysis
+<h3>
+<h4>
+Given the large variation in survival probability of those with and without dependencies, the assumption is that having invasive ventilation would yield similar results. Using the same Kaplan plot as previously but with ventilation being the varying factor, it shows that there is a difference between the 30-day survival probabilities of those who have had ventilation and those who haven’t. If you have had ventilation, your survival probability is approximately 14% less than if you didn’t require it. This is probably due to the fact that the effects of Covid-19 are worse on the patients who require ventilation, and therefore there risk is greater. There is no sharp change in the difference of the survival probabilities, but instead the differences slowly diverge, and reach peak difference of 16.7% at day 20. After this point the survival probabilities start to converge. This may be explained by the fact that the ventilation treatment is working. There were no discernible discrepancies between the two Cis for those with or without ventalation and therefore they have been omitted from the graph below.
+<h4>
+<p><img src="/img/sam4.jpeg" width="50%" style="display: block; margin: auto;" /></p>
+<h4>
+The Kaplan Meier Plot investigates survival time and one other factor, therefore, to investigate the association between survival times and multiple variables the Cox Proportional Hazards Model was used.
+<h4>
+<h4>
+Using this model, the association of survival with age, gender and BMI was analysed. The output from R, shows us the Likelihood Ratio Test, Wald Test and Logrank Test. The p-value for all these is very small at 2e-16, indicating that at least some of the co-variates are highly significant. Further inspection of the p-value of the individual factors shows that age and BMI are highly significant whilst gender is less so. This can be interpreted as increases in BMI and age increase risk of morbidity with Covid-19, and whether you are male or female has less effect on your survival probability.
+<h4>
+<h3>
+BMI Analysis
+<h3>
+<h4>
+As BMI is a significant factor affecting risk, below are fitted survival curves, for a 50-year-old male with BMI’s of 20, 25 30, 35. This plot demonstrates that as BMI increases the survival probability decreases. The difference in the 30-day survival probability between BMI 20 and BMI 35 is roughly 20%, which is significant in terms of survival, thus showing that BMI has a great impact on the risk of patients entering critical care.
+<h4>
+<p><img src="/img/sam5.jpeg" width="50%" style="display: block; margin: auto;" /></p>
+<h3>
+Deprivation Analysis
+<h3>
+<h4>
+The cumulative hazard plot stratified by deprivation has been used to evaluate the risks associated between survival and deprivation. The plot has been created using the log scale on the time axis, as it removes curvature and allows analysis as to whether the log cumulative hazards are parallel. The cumulative plot below, shows that they are all roughly parallel which may suggest that each deprivation index is proportional to each other in terms of survival probability.
+<h4>
+<h4>
+Below is also a Kaplan Meier Plot, showing deprivation affects survival probability. This indicates living in the least deprived area, increases your chances of survival at 30 days by 20% compared to that of someone living in the most deprived areas. Roughly speaking, the more deprived an area the higher the risk.
+<h4>
+<p><img src="/img/sam6.jpeg" width="50%" style="display: block; margin: auto;" /><img src="/img/sam7.jpeg" width="50%" style="display: block; margin: auto;" /></p>
+<h3>
+Prognostic Analysis Index
+<h3>
+<h4>
+A prognostic index splits the data into approximately 3 equal groups, of low, medium and high risk. The average fitted survival curve for each group is plotted using a Cox fit. This is then compared to the Kaplan Meier plot for each group.
+<h4>
+<h4>
+The plot below clearly shows that the curves are similar and close to each other, which suggests the analysis by either method yields similar results.
+<h4>
+<p><img src="/img/sam8.jpeg" width="50%" style="display: block; margin: auto;" /></p>
+<h3>
+Schoenfeld Residuals
+<h3>
+<h4>
+The Cox Proportional Hazards Model makes several assumptions, therefore it’s important to assess whether a fitted Cox Regression Model adequately describes the data. Due to censoring, standard residual methods do not work for survival analysis, therefore Schoenfeld Residuals has been used as per the plots below.
+<h4>
+<p><img src="/img/sam9.jpeg" width="50%" style="display: block; margin: auto;" /></p>
+<h4>
+From graphical inspection there is no pattern with time. The assumption of proportional hazards appears to be supported for the covariates Apache II and age.
+<h4>
+<h4>
+The R-code supports this as it indicates there is a trend for Apache II score and potentially age. Given that the Cox plot for all variables indicated that these were the ones which most significantly affected the survival probability, further research was needed.
+<h4>
+<h4>
+To check that individual cases weren’t heavily influencing the significance of age and the Apache II score, a Cook Influence measure is applied.
+<h4>
+<h4>
+The plot below indicates that patients 437 and 565 survived longer than expected given their age and Apache II score. This may therefore be influencing the age and Apache II categories’ survival probability disproportionately.
+<h4>
+<p><img src="/img/sam10.jpeg" width="50%" style="display: block; margin: auto;" /></p>
+<h4>
+However, removing these cases makes little difference to the significance of age and Apache II score and therefore we can conclude that they are in fact the most influential factors in affecting survival probability.
+<h4>
+<h3>
+Conclusion
+<h3>
+<h4>
+In conclusion, the longer you are in critical care your chances of survival decrease. When all variables are included there is roughly a 50/50 chance of survival for a patient in critical care at day 30. Generally, as age and BMI increase your risk of death also increases. Being male or female in my study has little effect on survival probability. Having dependencies, invasive ventilation, comorbidities and a high Apache II score also increase risk.
+<h4>
+<h4>
+Finally of the covariates, age and Apache II score affect the survival probability the most as seen by the Cox Plot and the Schoenfeld Residuals Plot.
+<h4>
+<h2>
+Project on Airbnb’s in Montreal
 <h2>
 <h2>
 Introduction
@@ -27,7 +181,7 @@ Analysing the Full Data Frame
 <h4>
 Initially glimpsing the data, there are 12540 observations of 74 variables, however not all of these will have an effect on price, such as the host_Url. Therefore we manually removed such variables, along with filtering by minimum no of nights less than 4 and accommodates 2 or more people. We called this data set newlistings1.
 <h4>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-2">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-10">
 <col><col><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">min</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">median</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q3</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">max</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">n</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">missing</th></tr>
 <tr>
@@ -40,7 +194,7 @@ A glimpse of data newlistings1, reveals we now have 7400 observations with 30 va
 <h4>
 Using favstats, we also get a summary of the price data, such as the mean price; £136.9
 <h4>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-12">
 <col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">AV</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SD</th></tr>
 <tr>
@@ -53,7 +207,7 @@ Using favstats, we also get a summary of the price data, such as the mean price;
 Now we can start to use EDA on this new dataframe, Step 1, Glimpsing the data:
 <h4>
 <pre class="r"><code>favstats(~price, data = newlistings2)</code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
 <col><col><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">min</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">median</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Q3</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">max</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">n</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">missing</th></tr>
 <tr>
@@ -78,7 +232,7 @@ Now i have performed initial anaylsis, i decided to experiment with several plot
 <h3>
 Plot 1
 <h3>
-<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-16-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <h4>
 The above plot shows the price of the AirBnB against the amenities they offer, colored by property type. From the graph it shows little correlation between price and amenities. We believe this is the case because the price of the amenities are fairly low, such as hair dryers, heating, bed linen etc, therefore no matter if the price of the accommodation is low it is still feasible to afford the amenities. The plot does show however that the majority of the properties have a price less than $200, but less of a correlation between price and property type for the others.
 <h4>
@@ -88,33 +242,33 @@ However there is a correlation between price and private rooms. These are all cl
 <h3>
 Plot 2
 <h3>
-<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-9-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-17-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <h4>
 This plot is the same as the above, however we have decided to use log of price as it produces a more normal distribution, it is here a lot clearer to see the shared rooms are the most affordable ones, and further shows lack of correlation between the others. We will continue therefore to use log price from now on.
 <h4>
 <p>&lt;h3 Plot 3 &amp; 4&gt;
-<img src="/blogs/airbnb_files/figure-html/unnamed-chunk-10-1.png" width="50%" style="display: block; margin: auto;" /><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-10-2.png" width="50%" style="display: block; margin: auto;" /></p>
+<img src="/blogs/airbnb_files/figure-html/unnamed-chunk-18-1.png" width="50%" style="display: block; margin: auto;" /><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-18-2.png" width="50%" style="display: block; margin: auto;" /></p>
 <h4>
 The above plots shows a histogram for the price of the properties one with logscale one without. It is clear from the first graph there is positively skewed distrubution, and by using the log scale it normalises it. This is better for regression models. In both plots we can use the mean line to see the mean price is around £115.
 <h4>
 <h5>
 Plot 5
 <h5>
-<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-11-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-19-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <h4>
 This plot shows a great negative skew to the 5* rating, i.e. the majority of ratings are 5<em>. As the ratings are high, before doing any analysis it could suggest that this may mean reviews don’t have much bearing on price because, the majority of reviews are 5</em>, however not all the prices are high.
 <h4>
 <h2>
 Plot 6
 <h2>
-<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-12-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-20-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <h4>
 The boxplot shows super host to log price, clearly the mean price for the superhosts are greater than that of those who aren’t. I would suggest this is because, super hosts are seen to be superior and therefore can charge more, especially if this correlates with having more amenities, better response time etc. Surprisingly however the most expensive property is for someone without a super host status. The super hosts on the other hand have a greater minimum price because they know they can charge more for the property. The IQR and range is smaller for super hosts, this could be because they know how much they can charge, compared to normal hosts who may have less experience with Airbnb.
 <h4>
 <h3>
 Plot 7
 <h3>
-<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-13-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="/blogs/airbnb_files/figure-html/unnamed-chunk-21-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <h4>
 Using ggpairs i can see correlations between variables. The greatest correlation is number of bedrooms and number the property sleeps. This is expected as the more rooms the more the property can sleep. The 2nd highest correlation is between review value and review location, this must be because there nicer the location the greater the review. This is expected, better locations better reviews. Correlations between availability and reviews are negatively correlated slightly. This suggest the more availability the worse the review, which makes sense. If the property is free more often this could be because it isn’t the best property which would bring with it worse reviews.
 <h4>
