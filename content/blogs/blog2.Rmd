@@ -16,7 +16,7 @@ title: Education
 
 <h4> As everyone knows, it's impossible to fit a life story into a one page CV. Therefore using my website, it allows me to elaborate further. Here is my CV, please continue reading for an in depth review. <h4>
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="50%", fig.align="center"}
 knitr::include_graphics("/img/cv.jpeg",error =FALSE)
 ```
 

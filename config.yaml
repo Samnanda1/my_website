@@ -9,7 +9,7 @@ params:
     buttonText: Get Started
     subtitle: |-
       Please explore my website, and if you have any further questions, don't hesitate to get in contact with me.
-    title: HI, I'M SAM AND WELCOME TO MY WEBSITE
+    title: HI I'M SAM, AND WELCOME TO MY WEBSITE
     blog: {}
   contact:
     address:  
@@ -105,7 +105,6 @@ params:
         title: Sport
         url: blogs/sport
       
-    
  # two:
   #  buttonText: Get Started
    # enable: yes

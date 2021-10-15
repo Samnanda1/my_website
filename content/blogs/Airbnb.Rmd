@@ -65,7 +65,7 @@ glimpse(listings)
 <h2> Analysing the Full Data Frame <h2>
 <h4> Initially glimpsing the data, there are 12540 observations of 74 variables, however not all of these will have an effect on price, such as the host_Url. Therefore we manually removed such variables, along with filtering by minimum no of nights less than 4 and accommodates 2 or more people. We called this data set newlistings1. <h4> 
 
-```{r}
+```{r, echo=FALSE}
 newlistings1 <- listings %>%
   mutate(price = parse_number(price)) %>%
   filter(minimum_nights <= 4) %>%
@@ -109,7 +109,7 @@ glimpse(newlistings1)
 
 <h4> Using favstats, we also get a summary of the price data, such as the mean price; £136.9 <h4>
 
-```{r}
+```{r, echo=FALSE}
 newlistings1 %>%
   summarise(AV = mean(price),
             SD = sd(price))
@@ -163,7 +163,7 @@ skimr::skim(newlistings2)
 <h4> Now i have performed initial anaylsis, i decided to experiment with several plots; <h4>
 
 <h3> Plot 1 <h3>
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="50%", fig.align="center"}
 #Plot 1
 ggplot(newlistings2, aes(x = price, y = amenities, colour = Property_Type)) + #Plotting a scatter plot of price against amenities and classifying the points by property type
   geom_point() +
@@ -180,7 +180,7 @@ ggplot(newlistings2, aes(x = price, y = amenities, colour = Property_Type)) + #P
 
 <h3> Plot 2 <h3>
 
-```{r, echo=FALSE}
+```{r, echo=FALSE,out.width="50%", fig.align="center"}
 #Plot 2
 ggplot(newlistings2, aes(x = price, y = amenities, colour = Property_Type)) + #Plotting a scatter plot of price against amenities and classifying the points by property type
   geom_point() +
@@ -195,7 +195,7 @@ ggplot(newlistings2, aes(x = price, y = amenities, colour = Property_Type)) + #P
 <h4> This plot is the same as the above, however we have decided to use log of price as it produces a more normal distribution, it is here a lot clearer to see the shared rooms are the most affordable ones, and further shows lack of correlation between the others. We will continue therefore to use log price from now on. <h4>
 
 <h3 Plot 3 & 4>
-```{r, echo=FALSE}
+```{r, echo=FALSE,out.width="50%", fig.align="center"}
 #Plot 3
 ggplot(newlistings2, aes(x = price, alpha = 0.6)) + #Plotting a histogram of price
   geom_histogram(aes(y = ..density..), colour = "black", fill = "blue") +
@@ -222,7 +222,7 @@ ggplot(newlistings2, aes(x = price, alpha = 0.6)) + #Plotting a histogram of pri
 
 <h5> Plot 5 <h5>
 
-```{r, echo=FALSE}
+```{r, echo=FALSE,out.width="50%", fig.align="center"}
 #Plot 4
 ggplot(newlistings2, aes(x = review_scores_rating)) + #Plotting a density plot for Amenities
   geom_density(aes(fill = "pink", alpha = 0.5)) +
@@ -238,7 +238,7 @@ ggplot(newlistings2, aes(x = review_scores_rating)) + #Plotting a density plot f
 
 <h2> Plot 6 <h2>
 
-```{r, echo=FALSE}
+```{r, echo=FALSE,out.width="50%", fig.align="center"}
 #Plot 5
 scatterplot <- newlistings2[-c(1:2, #creating a new scatter plot df of variables that the full linear model found to be the most statistically signifcant.
                                4:7,
@@ -265,7 +265,7 @@ ggplot(superhost1, aes(x=price, y = host_is_superhost, fill = host_is_superhost)
 <h4> The boxplot shows super host to log price, clearly the mean price for the superhosts are greater than that of those who aren't. I would suggest this is because, super hosts are seen to be superior and therefore can charge more, especially if this correlates with having more amenities, better response time etc. Surprisingly however the most expensive property is for someone without a super host status. The super hosts on the other hand have a greater minimum price because they know they can charge more for the property. The IQR and range is smaller for super hosts, this could be because they know how much they can charge, compared to normal hosts who may have less experience with Airbnb. <h4>
 
 <h3> Plot 7 <h3>
-```{r, echo=FALSE}
+```{r, echo=FALSE,out.width="50%", fig.align="center"}
 #Plot 6 
 
 GGally::ggpairs(scatterplot) # Running GG pairs to check relationships between variables
