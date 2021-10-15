@@ -27,7 +27,7 @@ knitr::include_graphics("/img/IMG_0565.JPG",error =FALSE)
 
 
 
-```{r, echo=FALSE, out.width="50%", fig.align="center",out.extra="style='transform:rotate(270deg);'"}
+```{r, echo=FALSE, out.width="25%", fig.align="center",out.extra="style='transform:rotate(270deg);'"}
 knitr::include_graphics("/img/IMG_0579.JPG",error =FALSE)
 ```
 
