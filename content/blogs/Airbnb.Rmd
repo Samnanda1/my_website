@@ -11,6 +11,9 @@ slug: airbnb # slug is the shorthand URL address... no spaces plz
 title: Project on Airbnb's in Montreal
 ---
 
+<h2> Welcome to the sixth tile of my website; <h2>
+
+
 ```{r setup, include=FALSE}
 # leave this chunk alone
 options(knitr.table.format = "html") 
