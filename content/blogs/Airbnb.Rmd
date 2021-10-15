@@ -149,7 +149,7 @@ favstats(~price, data = newlistings2)
 <h2> EDA 2 <h2>
 
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 skimr::skim(newlistings2)
 ```
 
