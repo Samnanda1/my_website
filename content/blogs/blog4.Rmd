@@ -25,9 +25,14 @@ knitr::include_graphics("/img/IMG_0565.JPG",error =FALSE)
 
 <h4> It was an incredible opportunity to meet such inspirational people, who had terminal illnesses, but had the courage and determination to undergo a challenging task for anyone, let alone someone in a wheelchair. I had the pleasure of hoisting a friend in a wheelchair up 27 meters to the top of the mast. Giving him the opportunity to do this was inspirational for me and the experience taught me the value of communication, teamwork, leadership and the importance of never prejudging people. <h4>
 
+
+
 ```{r, echo=FALSE, out.width="50%", fig.align="center",out.extra="style='transform:rotate(270deg);'"}
 knitr::include_graphics("/img/IMG_0579.JPG",error =FALSE)
 ```
+
+
+
 
 <h4> Following this in 2018, as Headboy I organised a charity mission to our sister school in Sierra Leone. I gathered a team of 8 and collectively we raised £20,000 through sponsored events such as the 3 peaks challenge and organising auctions. <h4>
 
