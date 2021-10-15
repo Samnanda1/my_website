@@ -17,7 +17,7 @@ title: About Me
 <h4> I created this website for a data analytics module whilst i was studying at LBS, to showcase a little about myself in a more fun and interactive way then a CV. But firstly here's a picture of me! <h4>
 
 
-```{r, echo=FALSE,out.width="50%"}
+```{r, echo=FALSE,out.width="50%", fig.align="center"}
 knitr::include_graphics("/img/IMG_4389.JPG",error =FALSE)
 ```
 
