@@ -8,8 +8,8 @@ params:
   banner:
     buttonText: Get Started
     subtitle: |-
-      Please explore my website, and if you have any further questions, don't hesitate to get in contact with me.
-    title: HI, I'M SAM AND WELCOME TO MY WEBSITE
+      My website has been created as a fun interactive CV to demonstrate coding as part of the data analytics module whilst studying for my Masters in Financial Analysis at London Business School. I hope you enjoy exploring the website, and if you have any questions, please feel free to get in touch. 
+    title: HI, I'M SAM NANDA WELCOME TO MY WEBSITE
     blog: {}
   contact:
     address:  

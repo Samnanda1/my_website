@@ -3,7 +3,7 @@ categories:
 - ""
 - ""
 date: "2017-10-31T22:42:51-05:00"
-description: "Click here for more information about my academic background"
+description: "If you would like to review my CV, please click here"
 draft: false
 #image: lbs.jpg
 keywords: ""
@@ -11,7 +11,7 @@ slug: lbs
 title: Education
 ---
 
-<h2> Welcome to the second tile of my website; <h4>
+<h2> My Journey <h2>
 
 
 <h4> As everyone knows, it's impossible to fit a life story into a one page CV. Therefore using my website, it allows me to elaborate further. Here is my CV, please continue reading for an in depth review. <h4>
@@ -20,21 +20,19 @@ title: Education
 knitr::include_graphics("/img/cv.jpeg",error =FALSE)
 ```
 
-<h4> Running through my life chronologically from when i started high school, my journey started when i was 11 years old and followed in my older brothers footsteps by going to St Ambrose College. <h4>
+<h4> I’ll start my journey at Senior School where I followed my older brother to an Academy, St Ambrose College. This all-boys school was renown in the area for great academics and great sport, particularly rugby, and having played rugby from an early age, was an excellent school giving me the opportunity  to excel in all areas. I really enjoyed school life representing school in sports and academically in Maths competitions and eventually knuckled down to my GCSE’s completing 11, with A*s and As, and continuing into sixth form to study Maths, Economics and Geography (having stopped Physics at AS level). <h4>
 
-<h4> After spending the first few years of school making friends and playing sport, i decided that i should probably concentrate on my GCSE's, so i knuckled down and completed 11 GCSE's getting A*'s and A's. Having enjoyed my experience at the school, i decided to continue there for 6th form. <h4>
+<h4> I was delighted to be chosen by the students and staff to be Head Boy (a double accolade as I had also been chosen as Head Boy at my Junior school). Being Head Boy taught me so much, as my duties included leading the School Council, reporting to OFTED, mentoring younger pupils, and leading the school in weekly assemblies. The most challenging and rewarding experience was speaking at Presentation Evening to over 2000 people (students, teachers, parents and governors) and I’m glad to say that the many hours of practice paid off and my speech even got a few laughs! <h4>
 
-<h4> In between studying for my A-Levels of Maths, Economics and Geography, i was  chosen to be Headboy by both students and staff. It was a proud moment as i had also been Headboy at my primary school. Being Headboy taught me much about leadership and mentoring, as my duties included leading the student council, reporting to OFSTED, organising events and tutoring younger pupils. The most challenging but exhilarating experience as Headboy was having to do my end of year speech in front of all pupils, teachers and parents. Speaking to 2000 people, was a unique experience i had never done, but after numerous practices the speech was a success. <h4>
+<h4> I secured my place at Newcastle University with A’s in Maths and Geography and a B in Economics. Newcastle had been a firm choice from early on, (not for the legendary cheap nights out) but as I was also following my grandfather and uncle to study there, continuing a family tradition, and of course the course interested me too. My passion for Maths and the wider financial element of the degree were important to me as I felt this was the career path I would like to follow.  <h4>
 
-<h4> I finished 6th form with 2 A's and a B at A-Level, which allowed me to secure my place at Newcastle University studying Maths and Finance. Newcastle was my firm choice, (no, not only because of the cheap alcohol!) but because both my Grandpa and Uncle had studied there, and continuing on our families legacies of studying up-north was important to me. Equally the course really interested me, continuing with my passion for maths, but also adding in the financial element, of which i knew i wanted the direction of my career to go. <h4>
-
-<h4> Despite having a great first year, unfortunately COVID curtailed my full experience. Mid way through year 2, lockdown begun and online learning started. THe rest of my uni experience continued like this but despite this i still graduated with a 2.1. <h4>
+<h4> Whilst Covid interrupted my studies at Newcastle, I was delighted to graduate with a 2:1 and wanted to continue onto a Masters. <h4>
 
 <h4> Given i had my university experience reduced, it was a huge factor in looking at the opportunity to do a Masters, as it would allow me to continue my studies, make new friends and play team sports. <h4>
 
-<h4> LBS came to my attention when i was researching Masters, being one of the best in the UK and one that places an emphasis on practical rather then theoretical learning, it seemed an obvious choice for me. After a long month of studying for me GMAT, applying and an antagonising wait, i was finally admitted onto the Master's in Financial Analysis course. <h4>
+<h4> LBS came to my attention when i was researching Masters, being one of the best in the UK and one that places an emphasis on practical rather then theoretical learning, it seemed an obvious choice for me. After a long month of studying for me GMAT, applying and an antagonising wait, I was finally admitted onto the Master's in Financial Analysis course. <h4>
 
-<h4> I am now 2 months into the course, and i am thoroughly enjoying my current courses; <h4>
+<h4> I am now 2 months into the course, and I am thoroughly enjoying my current courses; <h4>
 
 <h4> -Data Analytics in Finance <h4>
 <h4> -Investment Fundamentals <h4>
